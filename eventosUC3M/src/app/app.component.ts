@@ -9,7 +9,7 @@ import { ListPage } from '../pages/list/list';
 import {InscriptionsPage} from '../pages/inscriptions/inscriptions';
 import {FavoritesPage} from '../pages/favorites/favorites';
 import {NotificationsPage} from '../pages/notifications/notifications';
-
+import {EventDetailPage} from '../pages/event-detail/event-detail';
 
 
 

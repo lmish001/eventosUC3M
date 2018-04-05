@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import {InscriptionsPage} from '../pages/inscriptions/inscriptions';
 import {FavoritesPage} from '../pages/favorites/favorites';
 import {NotificationsPage} from '../pages/notifications/notifications';
+import {EventDetailPage} from '../pages/event-detail/event-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,7 +23,8 @@ import {EventService} from '../services/event.service';
     ListPage,
     InscriptionsPage,
     FavoritesPage,
-    NotificationsPage
+    NotificationsPage,
+    EventDetailPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import {EventService} from '../services/event.service';
     ListPage,
     InscriptionsPage,
     FavoritesPage,
-    NotificationsPage
+    NotificationsPage,
+    EventDetailPage
   ],
   providers: [
     StatusBar,

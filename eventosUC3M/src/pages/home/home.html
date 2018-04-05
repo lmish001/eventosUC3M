@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-card *ngFor="let event of events" class="advanced-background">
+    <ion-card *ngFor="let event of events" class="advanced-background" (click)="loadEventDetail(event)">
       <ion-card-content>
         <ion-card-title> {{event.name}}</ion-card-title>
         <img src={{event.photo}}>
