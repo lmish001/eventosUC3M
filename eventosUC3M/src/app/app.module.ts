@@ -12,6 +12,9 @@ import {NotificationsPage} from '../pages/notifications/notifications';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+//Services
+import {EventService} from '../services/event.service';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -37,7 +40,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    EventService
   ]
 })
 export class AppModule {}

@@ -8,11 +8,13 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+    <ion-card *ngFor="let event of events" class="advanced-background">
+      <ion-card-content>
+        <ion-card-title> {{event.name}}</ion-card-title>
+        <img src={{event.photo}}>
+        <div class="card-subtitle">{{event.place}}</div>
+      </ion-card-content>
+    </ion-card>
 
   <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>
