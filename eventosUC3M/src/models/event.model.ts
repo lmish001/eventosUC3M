@@ -13,4 +13,5 @@ export interface Event {
     contact: string;
     description: string;
     categories: Categories[];
+    inscriptions: number;
 };
