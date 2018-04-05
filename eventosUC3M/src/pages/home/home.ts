@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import {EventService} from '../../services/event.service';
 import {Event} from '../../models/event.model';
 import {EventDetailPage} from '../event-detail/event-detail';
+import {NotificationsPage} from '../notifications/notifications';
 
 @Component({
   selector: 'page-home',
@@ -28,5 +29,9 @@ export class HomePage {
 
   loadEventDetail(value: Event) {
     this.navCtrl.push(EventDetailPage, {param1: value});
+  }
+
+  loadNotifications() {
+    this.navCtrl.push(NotificationsPage);
   }
 }

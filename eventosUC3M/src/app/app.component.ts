@@ -8,8 +8,10 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import {InscriptionsPage} from '../pages/inscriptions/inscriptions';
 import {FavoritesPage} from '../pages/favorites/favorites';
-import {NotificationsPage} from '../pages/notifications/notifications';
+import {ConfigNotificationsPage} from '../pages/config-notifications/config-notifications';
+//import {NotificationsPage} from '../pages/notifications/notifications';
 import {EventDetailPage} from '../pages/event-detail/event-detail';
+import {UserDetailPage} from '../pages/user-detail/user-detail';
 
 
 
@@ -32,12 +34,12 @@ export class MyApp {
       { title: 'Inicio', component: HomePage },
       { title: 'Mis "Estoy interesado"', component: FavoritesPage },
       { title: 'Inscripciones', component: InscriptionsPage },
-      { title: 'Config. notificaciones', component: NotificationsPage }
+      { title: 'Config. notificaciones', component: ConfigNotificationsPage }
 
     ];
 
     this.userConfig = [
-      { title: 'Preferencias', component: HomePage },
+      { title: 'Mi cuenta', component: UserDetailPage },
       { title: 'Cerrar Sesion', component: HomePage }
     ];
 

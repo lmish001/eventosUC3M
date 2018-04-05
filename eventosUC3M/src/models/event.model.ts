@@ -1,5 +1,5 @@
-export type Campus = 'Campus de Getafe' | 'Campus de Leganés' | 'Campus de Colmenarejo' | 'Campus Puerta de Toledo' 
-export type Categories = 'Informática' |'Economía'|'Literatura'|'Ciencia'|'Software'|'Ciberseguridad'|'Historia'|'Música'|'Deporte'|'Teatro'
+import {Categories, Campus} from '../globalTypes'
+
 
 export interface Event {
     key?: string;

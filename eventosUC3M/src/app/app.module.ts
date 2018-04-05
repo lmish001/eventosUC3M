@@ -9,6 +9,8 @@ import {InscriptionsPage} from '../pages/inscriptions/inscriptions';
 import {FavoritesPage} from '../pages/favorites/favorites';
 import {NotificationsPage} from '../pages/notifications/notifications';
 import {EventDetailPage} from '../pages/event-detail/event-detail';
+import {UserDetailPage} from '../pages/user-detail/user-detail';
+import {ConfigNotificationsPage} from '../pages/config-notifications/config-notifications';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,7 +26,9 @@ import {EventService} from '../services/event.service';
     InscriptionsPage,
     FavoritesPage,
     NotificationsPage,
-    EventDetailPage
+    EventDetailPage,
+    UserDetailPage,
+    ConfigNotificationsPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,9 @@ import {EventService} from '../services/event.service';
     InscriptionsPage,
     FavoritesPage,
     NotificationsPage,
-    EventDetailPage
+    EventDetailPage,
+    UserDetailPage,
+    ConfigNotificationsPage
   ],
   providers: [
     StatusBar,
