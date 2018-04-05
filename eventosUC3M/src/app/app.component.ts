@@ -22,6 +22,7 @@ export class MyApp {
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
+  userConfig: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
@@ -33,6 +34,11 @@ export class MyApp {
       { title: 'Inscripciones', component: InscriptionsPage },
       { title: 'Config. notificaciones', component: NotificationsPage }
 
+    ];
+
+    this.userConfig = [
+      { title: 'Preferencias', component: HomePage },
+      { title: 'Cerrar Sesion', component: HomePage }
     ];
 
   }

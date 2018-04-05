@@ -6,6 +6,17 @@
   </ion-header>
 
   <ion-content>
+      <ion-item>
+          <ion-avatar item-start>
+            <img src="assets/imgs/marty.png">
+          </ion-avatar>
+          <h2>Marty McFly</h2>
+          <ion-list>
+              <button menuClose ion-item *ngFor="let u of userConfig" (click)="openPage(u)">
+                {{u.title}}
+              </button>
+            </ion-list>
+        </ion-item>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}

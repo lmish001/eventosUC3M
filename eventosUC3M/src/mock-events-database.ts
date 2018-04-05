@@ -4,7 +4,7 @@ export const EVENTS: Event[] = [
     {name: 'Conferencia sobre Ciberseguridad', 
     photo: 'http://cdn5.icemd.com/app/uploads/2016/09/Programa-Superior-Ciberseguridad-Compliance-ficha.jpg',
     date: new Date("May 4, 2018 10:30:00"),
-    campus: 'Campus de Colmennarejo',
+    campus: 'Campus de Colmenarejo',
     classroom: '1.1.A04',
     credits: 3,
     organizer: 'Lorena Juan García',

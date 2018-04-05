@@ -16,7 +16,7 @@
 <ion-content padding>
   <img src = {{event.photo}}>
   <p>{{event.description}}</p>
-  <p>Lugar: {{event.place}}</p>
+  <p>Lugar: {{event.campus}}</p>
   <p>Aula: {{event.classroom}}</p>
   <p>Fecha y hora: {{event.date}}</p>
   <p>Creditos: {{event.credits}}</p>
@@ -25,3 +25,11 @@
   <p>Categorias: {{event.categories}}</p>
 
 </ion-content>
+
+    <!-- align to the bottom of the page -->
+    <div style="position: absolute; bottom: 0px; width: 100%">
+        <div style="text-align: center">
+            <button ion-button color="secondary">Inscribirse</button>
+        </div>
+        
+    </div>
