@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component } from '@angular/core';
+import {IonicPage, NavController, NavParams } from 'ionic-angular';
 import {NotificationsPage} from '../notifications/notifications';
 import {EventService} from '../../services/event.service';
 import {Event} from '../../models/event.model';

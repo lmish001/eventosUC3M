@@ -10,7 +10,7 @@
           <ion-avatar item-start>
             <img src="assets/imgs/marty.png">
           </ion-avatar>
-          <h2>Marty McFly</h2>
+          <h2>{{user.name}} {{user.lastName}} {{user.lastName2}}</h2>
           <ion-list>
               <button menuClose ion-item *ngFor="let u of userConfig" (click)="openPage(u)">
                 {{u.title}}

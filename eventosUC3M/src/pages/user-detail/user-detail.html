@@ -17,5 +17,28 @@
 
 
 <ion-content padding>
+    <ion-avatar item-start>
+        <img src="assets/imgs/marty.png">
+    </ion-avatar>
+    <h2>{{user.name}} {{user.lastName}} {{user.lastName2}}</h2>
+    <h3>{{user.email}}</h3>
+    <button ion-button>Cerrar Sesion</button>
+    <h4>Preferencias</h4>
+
+    <ion-list>
+        <ion-item>
+          <ion-label>Campus</ion-label>
+          <ion-select [(ngModel)]="user.campus" placeholder={{user.campus}}>
+            <ion-option>Leganés</ion-option>
+            <ion-option>Getafe</ion-option>
+            <ion-option>Colmenarejo</ion-option>
+            <ion-option>Puerta de Toledo</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list> 
+      
+      <p>Temas</p>
+      <p>{{user.categories}}</p>
+
 
 </ion-content>
