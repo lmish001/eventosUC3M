@@ -5,12 +5,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 //Pages
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+//import { ListPage } from '../pages/list/list';
 import {InscriptionsPage} from '../pages/inscriptions/inscriptions';
 import {FavoritesPage} from '../pages/favorites/favorites';
 import {ConfigNotificationsPage} from '../pages/config-notifications/config-notifications';
 //import {NotificationsPage} from '../pages/notifications/notifications';
-import {EventDetailPage} from '../pages/event-detail/event-detail';
+//import {EventDetailPage} from '../pages/event-detail/event-detail';
 import {UserDetailPage} from '../pages/user-detail/user-detail';
 
 
