@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {EventService} from '../../services/event.service';
+
 
 /**
  * Generated class for the EventDetailPage page.
@@ -8,7 +10,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 import {Event} from '../../models/event.model';
-import {EVENTS} from '../../mock-events-database';
 
 @IonicPage()
 @Component({
@@ -19,7 +20,7 @@ export class EventDetailPage {
 
   event: Event;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private eventService: EventService) {
   }
 
   ngOnInit() {
@@ -29,5 +30,12 @@ export class EventDetailPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventDetailPage');
   }
+
+  registerEvent() {
+    //this.event.inscriptions+=1;
+    if (this.eventService.addInscriptions(this.event)) {
+      this.event.inscriptions+=1;
+  }
+ }
 
 }

@@ -22,10 +22,10 @@ export class HomePage {
     this.events = this.eventService.getEvents();
   }
 
-  addEvent(value: Event) {
+  /*addEvent(value: Event) {
     this.eventService.addEvent(value);
     this.events = this.eventService.getEvents();
-  }
+  }*/
 
   loadEventDetail(value: Event) {
     this.navCtrl.push(EventDetailPage, {param1: value});
@@ -33,5 +33,15 @@ export class HomePage {
 
   loadNotifications() {
     this.navCtrl.push(NotificationsPage);
+  }
+
+  addFavorites(value: Event) {
+    this.eventService.addFavorites(value);
+  }
+
+  shareEvent(value: Event) {
+  }
+
+  search() {
   }
 }

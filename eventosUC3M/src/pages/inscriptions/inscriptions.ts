@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {EventService} from '../../services/event.service';
+import {Event} from '../../models/event.model';
+import {EventDetailPage} from '../event-detail/event-detail';
+import {NotificationsPage} from '../notifications/notifications';
 
 /**
  * Generated class for the InscriptionsPage page.
@@ -14,12 +18,37 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'inscriptions.html',
 })
 export class InscriptionsPage {
+  events: Event[];
+  constructor(public navCtrl: NavController, public navParams: NavParams, private eventService: EventService) {
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  ngOnInit() {
+    this.getEvents();
+  }
+
+  getEvents(): void {
+    if(this.eventService.getInscriptions()!=null){
+      this.events = this.eventService.getInscriptions();
+    }
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InscriptionsPage');
+  }
+
+  loadEventDetail(value: Event) {
+    this.navCtrl.push(EventDetailPage, {param1: value});
+  }
+
+  loadNotifications() {
+    this.navCtrl.push(NotificationsPage);
+  }
+
+  shareEvent(value: Event) {
+  }
+
+  search() {
   }
 
 }
