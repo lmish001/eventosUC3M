@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import {User} from '../../models/user.model';
+import {USER} from '../../mock-user';
 /**
  * Generated class for the ConfigNotificationsPage page.
  *
@@ -14,7 +15,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'config-notifications.html',
 })
 export class ConfigNotificationsPage {
-
+  user: User = USER;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
