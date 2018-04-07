@@ -19,42 +19,31 @@ import {Event} from '../../models/event.model';
 export class EventDetailPage {
 
   event: Event;
-  buttonColor: string;
-  buttonText: string;
+  isRegistered: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private eventService: EventService) {
   }
 
   ngOnInit() {
     this.event = this.navParams.get('param1');
-    if(this.eventService.isRegistered(this.event)){
-      this.buttonColor= "#f53d3d";
-      this.buttonText="Cancelar Inscripcion" 
-    }
-    else {
-      this.buttonColor= "#32db64";
-      this.buttonText="Inscribirse"
-    }
+    this.isRegistered = this.eventService.isRegistered(this.event);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventDetailPage');
   }
 
-  eventButtonAction() {
-    //this.event.inscriptions+=1;
-  //The user is not registered in the event
+  register(){
   if (this.eventService.addInscriptions(this.event)) {
       this.event.inscriptions+=1;
-      this.buttonColor= "#f53d3d";
-      this.buttonText="Cancelar Inscripcion"
+      this.isRegistered=true;
   }
-  else {
+  }
+  cancelRegistration(){
     this.eventService.removeInscriptions(this.event);
     this.event.inscriptions-=1;
-    this.buttonColor= "#32db64";
-    this.buttonText="Inscribirse"
+    this.isRegistered=false;
   }
- }
+
 
 }

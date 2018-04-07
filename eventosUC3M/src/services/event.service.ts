@@ -21,17 +21,10 @@ export class EventService {
     }
 
     isRegistered(value: Event): boolean {
-    if(USER.inscriptions.indexOf(value)==-1){
-            return false;
-    }
-    return true;       
-    }
-
-    isInFavorites(value: Event): boolean {
-        if (USER.favorites.indexOf(value)!=-1){
-            return true;
+        if(USER.inscriptions.indexOf(value)==-1){
+                return false;
         }
-        return false;
+        return true;       
     }
 
     getFavorites(): Event[] {
@@ -41,29 +34,40 @@ export class EventService {
         return USER.favorites;
     }
 
+    isInFavorites(value: Event): boolean {
+        if (USER.favorites.indexOf(value)==-1){
+            return false;
+        }
+        return true;
+    }
+
     addEvent(value: Event) {
         EVENTS.push(value);
     }
 
     addFavorites (value: Event) {
-    if (USER.favorites[0]==null){
-        USER.favorites = [value];
-    }
-    else if (USER.favorites.indexOf(value)==-1) {
-        USER.favorites.push(value);
-    }    
+        if (USER.favorites[0]==null){
+            USER.favorites = [value];
+        }
+        else if (USER.favorites.indexOf(value)==-1) {
+            USER.favorites.push(value);
+        } 
     }
 
-    addInscriptions (value: Event) {
-    if(USER.inscriptions[0]==null){
-        USER.inscriptions = [value];
-        return 1;
+    removeFavorites (value: Event) {
+        USER.favorites.splice(USER.favorites.indexOf(value), 1);
     }
-    if (USER.inscriptions.indexOf(value)==-1) {
-        USER.inscriptions.push(value);
-        return 1;
-    }    
-    return 0;  
+
+    addInscriptions (value: Event): number {
+        if(USER.inscriptions[0]==null){
+            USER.inscriptions = [value];
+            return 1;
+        }
+        if (USER.inscriptions.indexOf(value)==-1) {
+            USER.inscriptions.push(value);
+            return 1;
+        }    
+        return 0;  
     }
 
     removeInscriptions (value: Event) {

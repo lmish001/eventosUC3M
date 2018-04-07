@@ -23,7 +23,13 @@
   <p>Organizador: {{event.organizer}}</p>
   <p>Contacto: {{event.contact}}</p>
   <p>Categorias: {{event.categories}}</p>
-  <button ion-button [style.backgroundColor]="buttonColor" (click)="eventButtonAction()">{{buttonText}}</button>
+  <div *ngIf="isRegistered==true">
+      <button ion-button color="danger" (click)="cancelRegistration()">Cancelar inscripción</button>
+  </div>
+
+  <div *ngIf="isRegistered==false">
+      <button ion-button color="secondary" (click)="register()">inscribirse</button>
+  </div>
   <button ion-button color="secondary">Exportar al Calendario</button>
 
 </ion-content>
