@@ -37,9 +37,12 @@
         <button ion-button  icon-only (click)="deleteFavorites(event)">
             <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
         </button>
-            <button ion-button  icon-only (click)="shareEvent(event)">
+        <button ion-button  icon-only (click)="shareEvent(event)">
                 <ion-icon ios="ios-share" md="md-share"></ion-icon>
-            </button>
+        </button>
+        <div *ngIf="isRegistered(event)==true">
+            <p>¡Ya está registrado!</p>
+        </div>
         </ion-card-content>
       </ion-card>
 

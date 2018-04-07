@@ -14,4 +14,5 @@ export interface Event {
     description: string;
     categories: Categories[];
     inscriptions: number;
+    webpage?: string;
 };

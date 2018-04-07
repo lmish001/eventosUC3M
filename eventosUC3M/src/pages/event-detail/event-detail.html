@@ -22,6 +22,7 @@
   <p>Creditos: {{event.credits}}</p>
   <p>Organizador: {{event.organizer}}</p>
   <p>Contacto: {{event.contact}}</p>
+  <p>Página web: {{event.webpage}}</p>
   <p>Categorias: {{event.categories}}</p>
   <div *ngIf="isRegistered==true">
       <button ion-button color="danger" (click)="cancelRegistration()">Cancelar inscripción</button>
@@ -41,6 +42,9 @@
           <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
       </button>
   </div>
+  <button ion-button  icon-only (click)="shareEvent(event)">
+        <ion-icon ios="ios-share" md="md-share"></ion-icon>
+    </button>
 </ion-content>
 
 

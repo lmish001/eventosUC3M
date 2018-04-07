@@ -57,6 +57,9 @@ export class EventDetailPage {
     this.isFavorite = false;
   }
 
+  shareEvent(value: Event) {
+  }
+
 
 
 }

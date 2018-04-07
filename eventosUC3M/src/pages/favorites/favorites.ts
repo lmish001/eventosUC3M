@@ -49,10 +49,13 @@ export class FavoritesPage {
       this.events = this.eventService.getFavorites();
     }
   }
-  
+
   deleteFavorites(value: Event) {
     this.eventService.removeFavorites(value);
   }
 
+  isRegistered(value: Event): boolean {
+    return this.eventService.isRegistered(value);
+  }
 
 }

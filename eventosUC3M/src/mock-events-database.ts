@@ -11,7 +11,8 @@ export const EVENTS: Event[] = [
     contact: 'lorenajg@gmail.com',
     description: 'Organizado por esta Escuela Politécnica Superior con la colaboración de ISACA (Information Systems Audit and Control Association) se va a celebrar un ciclo de conferencias sobre seguridad cuyo calendario y temas figuran esta página Web.',
     categories:  ['Ciberseguridad', 'Informática'],
-    inscriptions: 0 
+    inscriptions: 0,
+    webpage:'www.uc3m.com'
     },
     {name: 'Clase abierta de Historia de la música ', 
     photo: 'http://www.historyrocket.com/images/Caribbean-Music-History.jpg',
@@ -22,7 +23,8 @@ export const EVENTS: Event[] = [
     contact: 'angelrecas@gmail.com',
     description: 'En el marco de la asignatura de Humanidades “Historia de la música”. Ángel Recas interpreta al piano el Viacrucis de Franz Listz.',
     categories:  ['Historia', 'Música'],
-    inscriptions: 0 
+    inscriptions: 0,
+    webpage:'www.uc3m.com'
     },
     {name: 'Torneo de baloncesto 3x3', 
     photo: 'http://blog.schoolspecialty.com/wp-content/uploads/2016/03/main-26.jpg',

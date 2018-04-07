@@ -2,7 +2,7 @@ import {Component } from '@angular/core';
 import {IonicPage, NavController, NavParams } from 'ionic-angular';
 import {User} from '../../models/user.model';
 import {USER} from '../../mock-user';
-import {Categories, Campus} from '../../globalTypes';
+
 /**
  * Generated class for the UserDetailPage page.
  *
