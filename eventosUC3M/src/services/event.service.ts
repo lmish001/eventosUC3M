@@ -20,6 +20,20 @@ export class EventService {
          return USER.inscriptions;
     }
 
+    isRegistered(value: Event): boolean {
+    if(USER.inscriptions.indexOf(value)==-1){
+            return false;
+    }
+    return true;       
+    }
+
+    isInFavorites(value: Event): boolean {
+        if (USER.favorites.indexOf(value)!=-1){
+            return true;
+        }
+        return false;
+    }
+
     getFavorites(): Event[] {
         if(USER.favorites[0]==null){
             return null;
@@ -39,14 +53,6 @@ export class EventService {
         USER.favorites.push(value);
     }    
     }
-/*
-    removeFavorites (value: Event) {
-        USER.favorites.splice( USER.favorites.indexOf(value), 1);
-    }
-
-    removeInscriptions (value: Event) {
-        USER.inscriptions.splice(USER.inscriptions.indexOf(value), 1);
-    }*/
 
     addInscriptions (value: Event) {
     if(USER.inscriptions[0]==null){
@@ -58,5 +64,9 @@ export class EventService {
         return 1;
     }    
     return 0;  
+    }
+
+    removeInscriptions (value: Event) {
+        USER.inscriptions.splice(USER.inscriptions.indexOf(value), 1);
     }
 }

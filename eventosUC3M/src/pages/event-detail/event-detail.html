@@ -23,7 +23,7 @@
   <p>Organizador: {{event.organizer}}</p>
   <p>Contacto: {{event.contact}}</p>
   <p>Categorias: {{event.categories}}</p>
-  <button ion-button color="secondary" (click)="registerEvent()">Inscribirse</button>
+  <button ion-button [style.backgroundColor]="buttonColor" (click)="eventButtonAction()">{{buttonText}}</button>
   <button ion-button color="secondary">Exportar al Calendario</button>
 
 </ion-content>
