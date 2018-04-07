@@ -26,12 +26,21 @@
   <div *ngIf="isRegistered==true">
       <button ion-button color="danger" (click)="cancelRegistration()">Cancelar inscripción</button>
   </div>
-
   <div *ngIf="isRegistered==false">
       <button ion-button color="secondary" (click)="register()">inscribirse</button>
   </div>
   <button ion-button color="secondary">Exportar al Calendario</button>
-
+ 
+  <div *ngIf="isFavorite==false">
+      <button ion-button  icon-only (click)="addFavorites()">
+          <ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
+      </button>
+  </div>
+  <div *ngIf="isFavorite==true">
+      <button ion-button  icon-only (click)="deleteFavorites()">
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+      </button>
+  </div>
 </ion-content>
 
 

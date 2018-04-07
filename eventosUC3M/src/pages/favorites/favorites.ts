@@ -49,5 +49,10 @@ export class FavoritesPage {
       this.events = this.eventService.getFavorites();
     }
   }
+  
+  deleteFavorites(value: Event) {
+    this.eventService.removeFavorites(value);
+  }
+
 
 }

@@ -23,14 +23,27 @@
 
 
 <ion-content padding>
-    <ion-card *ngFor="let event of events" class="advanced-background" (click)="loadEventDetail(event)">
+    <ion-card *ngFor="let event of events" class="advanced-background" >
         <ion-card-content>
-          <ion-card-title> {{event.name}}</ion-card-title>
-          <img src={{event.photo}}>
-          <div class="card-subtitle">Campus de {{event.campus}}</div>
-          <div class="card-subtitle">{{event.inscriptions}} personas inscritas</div>
-          <div class="card-subtitle">{{event.date}}</div>
-          <div class="card-subtitle">Creditos: {{event.credits}}</div>
+          <div (click)="loadEventDetail(event)">
+            <ion-card-title> {{event.name}}</ion-card-title>
+            <img src={{event.photo}}>
+            <div class="card-subtitle">Campus de {{event.campus}}</div>
+            <div class="card-subtitle">{{event.inscriptions}} personas inscritas</div>
+            <div class="card-subtitle">{{event.date}}</div>
+            <div class="card-subtitle">Creditos: {{event.credits}}</div>
+          </div>
+          <div *ngIf="isInFavorites(event)==false">
+              <button ion-button  icon-only (click)="addFavorites(event)">
+                  <ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
+              </button>
+          </div>
+          <div *ngIf="isInFavorites(event)==true">
+              <button ion-button  icon-only (click)="deleteFavorites(event)">
+                  <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+              </button>
+          </div>
+          
           <button ion-button  icon-only (click)="shareEvent(event)">
               <ion-icon ios="ios-share" md="md-share"></ion-icon>
           </button>

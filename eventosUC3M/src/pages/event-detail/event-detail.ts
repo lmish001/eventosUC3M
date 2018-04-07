@@ -20,6 +20,7 @@ export class EventDetailPage {
 
   event: Event;
   isRegistered: boolean;
+  isFavorite: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private eventService: EventService) {
   }
@@ -27,6 +28,7 @@ export class EventDetailPage {
   ngOnInit() {
     this.event = this.navParams.get('param1');
     this.isRegistered = this.eventService.isRegistered(this.event);
+    this.isFavorite = this.eventService.isInFavorites(this.event);
   }
 
   ionViewDidLoad() {
@@ -44,6 +46,17 @@ export class EventDetailPage {
     this.event.inscriptions-=1;
     this.isRegistered=false;
   }
+
+  addFavorites() {
+    this.eventService.addFavorites(this.event);
+    this.isFavorite=true;
+  }
+
+  deleteFavorites() {
+    this.eventService.removeFavorites(this.event);
+    this.isFavorite = false;
+  }
+
 
 
 }

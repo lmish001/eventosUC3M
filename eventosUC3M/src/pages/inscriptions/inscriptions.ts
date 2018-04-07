@@ -45,6 +45,18 @@ export class InscriptionsPage {
     this.navCtrl.push(NotificationsPage);
   }
 
+  addFavorites(value: Event) {
+    this.eventService.addFavorites(value);
+  }
+
+  deleteFavorites(value: Event) {
+    this.eventService.removeFavorites(value);
+  }
+
+  isInFavorites(value: Event): boolean {
+    return this.eventService.isInFavorites(value);
+  }
+
   shareEvent(value: Event) {
   }
 
