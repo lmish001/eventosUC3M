@@ -17,6 +17,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 //Services
 import {EventService} from '../services/event.service';
+import {NotificationService} from '../services/notification.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {EventService} from '../services/event.service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    EventService
+    EventService,
+    NotificationService
   ]
 })
 export class AppModule {}
