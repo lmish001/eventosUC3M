@@ -5,7 +5,8 @@ export interface Event {
     key?: string;
     name: string;
     photo: string;
-    date: Date;
+    date: string;
+    time: string;
     campus: Campus;
     classroom: string;
     credits?:number;

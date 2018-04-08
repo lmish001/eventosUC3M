@@ -14,3 +14,14 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+$font-stack:    Helvetica;
+$words-color: black;
+$light-dark-color: #c3c3c3;
+$primary-color: #0b41be;
+$light-primary-color: #6fbaed;
+$secondary-color: #9775e1;
+
+ion-header{
+    background: $light-dark-color;
+}
