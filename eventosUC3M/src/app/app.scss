@@ -25,3 +25,25 @@ $secondary-color: #9775e1;
 ion-header{
     background: $light-dark-color;
 }
+.icon{
+    width: 28px;
+    height: 28px;  
+}
+.little_icon{
+    width: 18px;
+    height: 18px; 
+    display: inline-block;
+    position: relative;
+    top: 4px;
+}
+.columna{
+    width: 49%;
+    display: inline-block;
+}
+.card-title-only{
+    display:inline-block;
+    width: 59%;
+    height: 10px;    
+    position: relative;
+    top: -10px;
+}

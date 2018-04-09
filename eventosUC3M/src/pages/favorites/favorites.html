@@ -5,20 +5,18 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu"></ion-icon>
     </button>
-    <button ion-button  icon-only (click)="loadNotifications()">
-        <ion-icon ios="ios-notifications" md="md-notifications"></ion-icon>
+    <button ion-button color="light" icon-only (click)="search()">
+        <img class="icon" src="assets/imgs/search.png">
       </button>
-    <button ion-button  icon-only (click)="search()">
-        <ion-icon ios="ios-search" md="md-search"></ion-icon>
+    <button ion-button  color="light" icon-only (click)="loadNotifications()">
+        <img class="icon" src="assets/imgs/notify.png">
     </button>
-    <ion-title>'Estoy interesado'</ion-title>
+    <ion-title><h1>Estoy interesado</h1></ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
@@ -26,23 +24,40 @@
 
     <ion-card *ngFor="let event of events" class="advanced-background" >
         <ion-card-content>
-          <div (click)="loadEventDetail(event)">
-            <ion-card-title> {{event.name}}</ion-card-title>
-            <img src={{event.photo}}>
-            <div class="card-subtitle">Campus de {{event.campus}}</div>
-            <div class="card-subtitle">{{event.inscriptions}} personas inscritas</div>
-            <div class="card-subtitle">{{event.date}}</div>
-            <div class="card-subtitle">Creditos: {{event.credits}}</div>
-          </div>
-        <button ion-button  icon-only (click)="deleteFavorites(event)">
-            <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
-        </button>
-        <button ion-button  icon-only (click)="shareEvent(event)">
-                <ion-icon ios="ios-share" md="md-share"></ion-icon>
-        </button>
-        <div *ngIf="isRegistered(event)==true">
-            <p>¡Ya está registrado!</p>
-        </div>
+            <div (click)="loadEventDetail(event)">
+                <div class="card-title-only">
+                    <ion-card-title style="font-size: 16px; font-weight: bold;"> {{event.name}}</ion-card-title>
+                </div>
+                <div style="display:inline-block;width: 39%;">
+                    <button ion-button color="none" icon-only (click)="shareEvent(event)">
+                            <img class="icon" src="assets/imgs/share.png">
+                        </button>
+                    <div *ngIf="isInFavorites(event)==false">
+                        <button ion-button color="none" icon-only (click)="addFavorites(event)">
+                        <img class="icon" src="assets/imgs/fav_off.png">
+                        </button>
+                    </div>
+                    <div *ngIf="isInFavorites(event)==true">
+                        <button ion-button  color="none" icon-only (click)="deleteFavorites(event)">
+                        <img class="icon" src="assets/imgs/fav_on.png">
+                        </button>
+                    </div>
+                </div>
+                <div (click)="loadEventDetail(event)">
+                    <img src={{event.photo}}>
+                    <div class="columna">
+                        <div class="card-subtitle"><img class="little_icon" src="assets/imgs/place.png">{{event.campus}}</div>
+                        <div class="card-subtitle"><img class="little_icon" src="assets/imgs/people.png">{{event.inscriptions}} inscritos</div>
+                    </div>
+                    <div class="columna">
+                        <div class="card-subtitle"><img class="little_icon" src="assets/imgs/date.png">{{event.date.toLocaleDateString()}}</div>
+                        <div class="card-subtitle"><img class="little_icon" src="assets/imgs/label.png">{{event.credits}} créditos</div>
+                    </div>
+                </div>
+                <div *ngIf="isRegistered(event)==true">
+                    <p>¡Ya estás inscrito!</p>
+                </div>
+            </div>
         </ion-card-content>
       </ion-card>
 

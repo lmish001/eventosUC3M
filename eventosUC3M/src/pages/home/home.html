@@ -9,8 +9,6 @@
     <button ion-button  color="light" icon-only (click)="loadNotifications()">
         <img class="icon" src="assets/imgs/notify.png">
     </button>
-      
-    
     <ion-title><h1>Eventos UC3M</h1></ion-title>
   </ion-navbar>
 </ion-header>
@@ -43,7 +41,7 @@
                     <div class="card-subtitle"><img class="little_icon" src="assets/imgs/people.png">{{event.inscriptions}} inscritos</div>
                 </div>
                 <div class="columna">
-                    <div class="card-subtitle"><img class="little_icon" src="assets/imgs/date.png">{{event.date}}</div>
+                    <div class="card-subtitle"><img class="little_icon" src="assets/imgs/date.png">{{event.date.toLocaleDateString()}}</div>
                     <div class="card-subtitle"><img class="little_icon" src="assets/imgs/label.png">{{event.credits}} créditos</div>
                 </div>
             </div>

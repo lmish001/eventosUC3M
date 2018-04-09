@@ -5,5 +5,5 @@ export interface Notification {
     key?: string;
     event: Event;
     type: tNotification;
-
+    date: Date;
 }

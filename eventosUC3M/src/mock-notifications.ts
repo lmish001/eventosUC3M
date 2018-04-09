@@ -27,7 +27,8 @@ export const NOTIFICATIONS: Notification[] = [
         contact: 'polideportivo@gmail.com',
         description: 'Torneo de baloncesto en el que los equipos compiten 3 contra 3 en una canasta, y en el que como mínimo disputarán dos partidos. 6 euros de inscripción.',
         categories:  ['Deporte'],
-        inscriptions: 0  
+        inscriptions: 0,
+        credits: 0  
         },
         type: 'cancelado',
         date: new Date("April 18, 2018 9:43:12")
