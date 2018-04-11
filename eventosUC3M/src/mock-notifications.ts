@@ -1,4 +1,4 @@
-import {Notification} from './models/notification.model';
+/*import {Notification} from './models/notification.model';
 
 export const NOTIFICATIONS: Notification[] = [
     {
@@ -33,4 +33,4 @@ export const NOTIFICATIONS: Notification[] = [
         type: 'cancelado',
         date: new Date("April 18, 2018 9:43:12")
     }
-];
+];*/

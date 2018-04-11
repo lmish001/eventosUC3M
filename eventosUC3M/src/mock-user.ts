@@ -1,4 +1,4 @@
-import {User} from './models/user.model';
+/*import {User} from './models/user.model';
 
 export const USER: User = {
     name: 'Marty',
@@ -12,4 +12,4 @@ export const USER: User = {
     ntf_evNew: false,
     favorites: [null],
     inscriptions:[null]
-};
+};*/

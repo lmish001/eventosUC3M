@@ -27,8 +27,8 @@ export class EventDetailPage {
 
   ngOnInit() {
     this.event = this.navParams.get('param1');
-    this.isRegistered = this.eventService.isRegistered(this.event);
-    this.isFavorite = this.eventService.isInFavorites(this.event);
+    //this.isRegistered = this.eventService.isRegistered(this.event);
+    //this.isFavorite = this.eventService.isInFavorites(this.event);
   }
 
   ionViewDidLoad() {
@@ -36,25 +36,25 @@ export class EventDetailPage {
   }
 
   register(){
-  if (this.eventService.addInscriptions(this.event)) {
-      this.event.inscriptions+=1;
-      this.isRegistered=true;
-  }
+
+      //this.event.inscriptions+=1;
+      //this.isRegistered=true;
+  
   }
   cancelRegistration(){
-    this.eventService.removeInscriptions(this.event);
-    this.event.inscriptions-=1;
-    this.isRegistered=false;
+
+    //this.event.inscriptions-=1;
+   //this.isRegistered=false;
   }
 
   addFavorites() {
-    this.eventService.addFavorites(this.event);
-    this.isFavorite=true;
+
+    //this.isFavorite=true;
   }
 
   deleteFavorites() {
-    this.eventService.removeFavorites(this.event);
-    this.isFavorite = false;
+
+    //this.isFavorite = false;
   }
 
   shareEvent(value: Event) {

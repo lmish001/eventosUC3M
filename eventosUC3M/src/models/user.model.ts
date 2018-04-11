@@ -3,16 +3,17 @@ import {Event} from '../models/event.model';
 
 export interface User {
     key?: string;
+    email: string;
+    password: string;
     name: string;
     lastName: string; 
     lastName2?: string;
-    email: string;
     campus: Campus;
     categories: Categories[];
     avatar: string;
     ntf_evCanc: boolean;
     ntf_evMod: boolean;
     ntf_evNew: boolean;
-    favorites: Event[];
-    inscriptions: Event[];
+    favorites: string[];
+    inscriptions: string[];
 }

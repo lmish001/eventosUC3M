@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { User } from '../../models/user.model';
+import { AuthenticationService } from '../../services/authentication.service';
 
 /**
  * Generated class for the LoginPage page.
@@ -9,17 +11,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  */
 
 @IonicPage()
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user = {} as User;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authServ: AuthenticationService) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+  login (user: User) {
+    this.authServ.login(user);
   }
 
 }

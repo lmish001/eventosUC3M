@@ -1,23 +1,34 @@
 import {Event} from '../models/event.model';
-import {EVENTS} from '../mock-events-database';
-import {USER} from '../mock-user';
 import { Injectable } from '@angular/core';
+import {AngularFireDatabase} from 'angularfire2/database';
 
 @Injectable()
 export class EventService {
 
-  
-    constructor() { }
+    private eventsRef = this.db.list<Event>('Events')
+    //private userRef = this.db.list<User>('Users')
 
-    getEvents(): Event[] {
-        return EVENTS;
+    constructor(private db: AngularFireDatabase) {      
+       //this.eventsRef.push(EVENTS[0]);
+    }
+    
+    getEvents() {
+        return this.eventsRef;
     }
 
-    getInscriptions(): Event[] {
+    addEvent(value: Event) {
+        return this.eventsRef.push(value);
+    }
+
+    updateEvent(value: Event) {
+        return this.eventsRef.update(value.key, value);
+    }
+
+    /*getInscriptions(): Event[] {
         if(USER.inscriptions[0]==null){
                 return null;
         }
-         return USER.inscriptions;
+        return USER.inscriptions;
     }
 
     isRegistered(value: Event): boolean {
@@ -33,14 +44,11 @@ export class EventService {
         }
         return USER.favorites;
     }
-
-    isInFavorites(value: Event): boolean {
-        if (USER.favorites.indexOf(value)==-1){
-            return false;
-        }
-        return true;
+*/
+    isInFavorites(value: Event) {
+        return null;
     }
-
+/*
     addEvent(value: Event) {
         EVENTS.push(value);
     }
@@ -58,7 +66,8 @@ export class EventService {
         USER.favorites.splice(USER.favorites.indexOf(value), 1);
     }
 
-    addInscriptions (value: Event): number {
+    addInscriptions (value: Event) {
+        this.userRef.update.
         if(USER.inscriptions[0]==null){
             USER.inscriptions = [value];
             return 1;
@@ -72,5 +81,5 @@ export class EventService {
 
     removeInscriptions (value: Event) {
         USER.inscriptions.splice(USER.inscriptions.indexOf(value), 1);
-    }
+    }*/
 }

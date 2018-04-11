@@ -1,5 +1,4 @@
-import {Notification} from '../models/notification.model';
-import {NOTIFICATIONS} from '../mock-notifications';
+import { Notification } from '../models/notification.model';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -7,7 +6,7 @@ export class NotificationService {
     constructor() { }
 
     getNotifications(): Notification[] {
-        return NOTIFICATIONS;
+        return null;
     }
 
 }

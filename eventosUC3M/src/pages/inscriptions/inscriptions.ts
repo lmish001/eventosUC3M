@@ -27,9 +27,6 @@ export class InscriptionsPage {
   }
 
   getEvents(): void {
-    if(this.eventService.getInscriptions()!=null){
-      this.events = this.eventService.getInscriptions();
-    }
     
   }
 
@@ -46,11 +43,9 @@ export class InscriptionsPage {
   }
 
   addFavorites(value: Event) {
-    this.eventService.addFavorites(value);
   }
 
   deleteFavorites(value: Event) {
-    this.eventService.removeFavorites(value);
   }
 
   isInFavorites(value: Event): boolean {

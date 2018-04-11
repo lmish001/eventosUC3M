@@ -4,17 +4,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import {User} from '../models/user.model';
-import {USER} from '../mock-user';
 
 //Pages
 import { HomePage } from '../pages/home/home';
-//import { ListPage } from '../pages/list/list';
-import {InscriptionsPage} from '../pages/inscriptions/inscriptions';
-import {FavoritesPage} from '../pages/favorites/favorites';
-import {ConfigNotificationsPage} from '../pages/config-notifications/config-notifications';
-//import {NotificationsPage} from '../pages/notifications/notifications';
-//import {EventDetailPage} from '../pages/event-detail/event-detail';
-import {UserDetailPage} from '../pages/user-detail/user-detail';
+import { LoginPage } from '../pages/login/login';
+import { InscriptionsPage } from '../pages/inscriptions/inscriptions';
+import { FavoritesPage } from '../pages/favorites/favorites';
+import { ConfigNotificationsPage } from '../pages/config-notifications/config-notifications';
+import { UserDetailPage } from '../pages/user-detail/user-detail';
 
 
 
@@ -24,8 +21,8 @@ import {UserDetailPage} from '../pages/user-detail/user-detail';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
-  user: User = USER;
+  rootPage: any = LoginPage;
+  user:User;
   pages: Array<{title: string, component: any}>;
   userConfig: Array<{title: string, component: any}>;
 

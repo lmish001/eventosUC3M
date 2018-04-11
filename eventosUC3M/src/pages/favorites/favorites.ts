@@ -45,17 +45,12 @@ export class FavoritesPage {
   }
 
   getEvents(): void {
-    if(this.eventService.getFavorites()!=null){
-      this.events = this.eventService.getFavorites();
-    }
   }
 
   deleteFavorites(value: Event) {
-    this.eventService.removeFavorites(value);
   }
 
-  isRegistered(value: Event): boolean {
-    return this.eventService.isRegistered(value);
+  isRegistered(value: Event){
   }
 
 }
