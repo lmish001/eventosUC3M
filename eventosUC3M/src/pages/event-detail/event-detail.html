@@ -4,6 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+
 <ion-header>
 
   <ion-navbar>
@@ -14,37 +15,52 @@
 
 
 <ion-content padding>
-  <img src = {{event.photo}}>
-  <p>{{event.description}}</p>
-  <p>Lugar: Campus de {{event.campus}}</p>
-  <p>Aula: {{event.classroom}}</p>
-  <p>Fecha y hora: {{event.date}}</p>
-  <p>Creditos: {{event.credits}}</p>
-  <p>Organizador: {{event.organizer}}</p>
-  <p>Contacto: {{event.contact}}</p>
-  <p>Página web: {{event.webpage}}</p>
-  <p>Categorias: {{event.categories}}</p>
-  <div *ngIf="isRegistered==true">
-      <button ion-button color="danger" (click)="cancelRegistration()">Cancelar inscripción</button>
-  </div>
-  <div *ngIf="isRegistered==false">
-      <button ion-button color="secondary" (click)="register()">inscribirse</button>
-  </div>
-  <button ion-button color="secondary">Exportar al Calendario</button>
- 
-  <div *ngIf="isFavorite==false">
-      <button ion-button  icon-only (click)="addFavorites()">
-          <ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
-      </button>
-  </div>
-  <div *ngIf="isFavorite==true">
-      <button ion-button  icon-only (click)="deleteFavorites()">
-          <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
-      </button>
-  </div>
-  <button ion-button  icon-only (click)="shareEvent(event)">
-        <ion-icon ios="ios-share" md="md-share"></ion-icon>
-    </button>
+    <div class="foto">  
+        <img src = {{event.photo}}>
+    </div> 
+    <div class="columna">
+            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/place.png">{{event.campus}}</div>
+            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/education.png">{{event.classroom}}</div>
+            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/people.png">{{event.inscriptions}} inscritos</div>
+        </div>
+        <div class="columna">
+            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/date.png">{{event.date.toLocaleDateString()}}</div>
+            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/time.png">{{event.date.getHours()}}:{{event.date.getMinutes()}}</div>
+            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/label.png">{{event.credits}} créditos</div>
+    </div>
+    <h2>Descripción</h2> 
+    <p>{{event.description}}</p>
+    <h2>Contacto</h2> 
+    <p>{{event.contact}}</p>
+    <p>Organizador: {{event.organizer}}</p>
+    <div style="display: inline-block">
+        Página web: {{event.webpage}}<div class="card-subtitle"><img class="icon" src="assets/imgs/web.png"></div>
+    </div>
+    <p></p>
+    <p>Categorias: {{event.categories}}</p>
+    <div class="columna" *ngIf="isRegistered==true">
+        <button ion-button small color="danger" (click)="cancelRegistration()">Cancelar inscripción</button>
+    </div>
+    <div class="columna" *ngIf="isRegistered==false">
+        <button ion-button small color="secondary" (click)="register()">inscribirse</button>
+    </div>
+    <button ion-button small color="secondary">Exportar al Calendario</button>
+    
+    <div style="display:inline-block;width: 100%;">
+                    <button ion-button color="none" icon-only (click)="shareEvent(event)">
+                            <img class="icon" src="assets/imgs/share.png">
+                        </button>
+                    <div *ngIf="isFavorite==false">
+                        <button ion-button color="none" icon-only (click)="addFavorites(event)">
+                        <img class="icon" src="assets/imgs/fav_off.png">
+                        </button>
+                    </div>
+                    <div *ngIf="isFavorite==true">
+                        <button ion-button  color="none" icon-only (click)="deleteFavorites(event)">
+                        <img class="icon" src="assets/imgs/fav_on.png">
+                        </button>
+                    </div>
+    </div>
 </ion-content>
 
 

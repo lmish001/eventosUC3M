@@ -10,19 +10,24 @@
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-    <ion-title>Mi cuenta</ion-title>
+    <ion-title><h1>Mi cuenta</h1></ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-avatar item-start>
-        <img src="assets/imgs/marty.png">
-    </ion-avatar>
-    <h2>{{user.name}} {{user.lastName}} {{user.lastName2}}</h2>
-    <h3>{{user.email}}</h3>
-    <button ion-button>Cerrar Sesion</button>
+    <div class="columna">
+      <ion-avatar item-start>
+          <img src="assets/imgs/marty.png">
+      </ion-avatar>
+    </div>
+    <div class="columna2">
+      <h2>{{user.name}} {{user.lastName}} {{user.lastName2}}</h2>
+      <h3>{{user.email}}</h3>
+      <button ion-button small color="danger">Cerrar Sesion</button>
+    </div>
+    
     <h4>Preferencias</h4>
 
     <ion-list>

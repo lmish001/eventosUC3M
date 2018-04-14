@@ -43,7 +43,6 @@ export class MyApp {
 
     this.userConfig = [
       { title: 'Mi cuenta', component: UserDetailPage },
-      { title: 'Cerrar Sesion', component: HomePage }
     ];
 
   }

@@ -7,15 +7,16 @@
 
   <ion-content>
       <ion-item>
-          <ion-avatar item-start>
-            <img src="assets/imgs/marty.png">
-          </ion-avatar>
-          <h2>{{user.name}} {{user.lastName}} {{user.lastName2}}</h2>
+          <ion-thumbnail item-start>
+              <img src="assets/imgs/marty.png">
+          </ion-thumbnail>
+          <h2 class="usuario">{{user.name}} {{user.lastName}} {{user.lastName2}}</h2>
           <ion-list>
               <button menuClose ion-item *ngFor="let u of userConfig" (click)="openPage(u)">
                 {{u.title}}
               </button>
-            </ion-list>
+            <button ion-button small color="danger">Cerrar Sesion</button>
+          </ion-list>
         </ion-item>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">

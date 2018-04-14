@@ -16,14 +16,21 @@ import {NotificationsPage} from '../notifications/notifications';
 @Component({
   selector: 'page-inscriptions',
   templateUrl: 'inscriptions.html',
+  
 })
 export class InscriptionsPage {
   events: Event[];
+  event: Event;
+  isRegistered: boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams, private eventService: EventService) {
   }
 
+
+
   ngOnInit() {
     this.getEvents();
+    this.event = this.navParams.get('param1');
+    this.isRegistered = this.eventService.isRegistered(this.event);
   }
 
   getEvents(): void {
@@ -61,6 +68,17 @@ export class InscriptionsPage {
   }
 
   search() {
+  }
+  register(){
+    if (this.eventService.addInscriptions(this.event)) {
+        this.event.inscriptions+=1;
+        this.isRegistered=true;
+    }
+    }
+  cancelRegistration(){
+      this.eventService.removeInscriptions(this.event);
+      this.event.inscriptions-=1;
+      this.isRegistered=false;
   }
 
 }

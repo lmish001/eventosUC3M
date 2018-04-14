@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {EventService} from '../../services/event.service';
-
+import {Event} from '../../models/event.model';
 
 /**
  * Generated class for the EventDetailPage page.
@@ -9,7 +9,7 @@ import {EventService} from '../../services/event.service';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-import {Event} from '../../models/event.model';
+
 
 @IonicPage()
 @Component({
@@ -17,7 +17,6 @@ import {Event} from '../../models/event.model';
   templateUrl: 'event-detail.html',
 })
 export class EventDetailPage {
-
   event: Event;
   isRegistered: boolean;
   isFavorite: boolean;
@@ -31,9 +30,6 @@ export class EventDetailPage {
     this.isFavorite = this.eventService.isInFavorites(this.event);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EventDetailPage');
-  }
 
   register(){
   if (this.eventService.addInscriptions(this.event)) {
