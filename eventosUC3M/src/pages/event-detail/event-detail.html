@@ -5,6 +5,7 @@
   Ionic pages and navigation.
 -->
 
+
 <ion-header>
 
   <ion-navbar>
@@ -38,6 +39,9 @@
     </div>
     <p></p>
     <p>Categorias: {{event.categories}}</p>
+
+    <div #map id="map"></div> 
+    
     <div class="columna" *ngIf="isRegistered==true">
         <button ion-button small color="danger" (click)="cancelRegistration()">Cancelar inscripción</button>
     </div>
@@ -47,19 +51,19 @@
     <button ion-button small color="secondary">Exportar al Calendario</button>
     
     <div style="display:inline-block;width: 100%;">
-                    <button ion-button color="none" icon-only (click)="shareEvent(event)">
-                            <img class="icon" src="assets/imgs/share.png">
-                        </button>
-                    <div *ngIf="isFavorite==false">
-                        <button ion-button color="none" icon-only (click)="addFavorites(event)">
-                        <img class="icon" src="assets/imgs/fav_off.png">
-                        </button>
-                    </div>
-                    <div *ngIf="isFavorite==true">
-                        <button ion-button  color="none" icon-only (click)="deleteFavorites(event)">
-                        <img class="icon" src="assets/imgs/fav_on.png">
-                        </button>
-                    </div>
+        <button ion-button color="none" icon-only (click)="shareEvent(event)">
+                <img class="icon" src="assets/imgs/share.png">
+            </button>
+        <div *ngIf="isFavorite==false">
+            <button ion-button color="none" icon-only (click)="addFavorites(event)">
+            <img class="icon" src="assets/imgs/fav_off.png">
+            </button>
+        </div>
+        <div *ngIf="isFavorite==true">
+            <button ion-button  color="none" icon-only (click)="deleteFavorites(event)">
+            <img class="icon" src="assets/imgs/fav_on.png">
+            </button>
+        </div>
     </div>
 </ion-content>
 

@@ -3,10 +3,10 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <button ion-button color="light" icon-only (click)="search()">
+    <button ion-button clear icon-only (click)="search()">
         <img class="icon" src="assets/imgs/search.png">
       </button>
-    <button ion-button  color="light" icon-only (click)="loadNotifications()">
+    <button ion-button clear color="light" icon-only (click)="loadNotifications()">
         <img class="icon" src="assets/imgs/notify.png">
     </button>
     <ion-title><h1>Eventos UC3M</h1></ion-title>
@@ -18,21 +18,21 @@
       <ion-card-content>
             <div class="card-title-only">
                     <ion-card-title style="font-size: 16px; font-weight: bold;"> {{event.name}}</ion-card-title>
+            </div>
+            <div style="display:inline-block;width: 39%;">
+                <button ion-button color="none" icon-only (click)="shareEvent(event)">
+                        <img class="icon" src="assets/imgs/share.png">
+                    </button>
+                <div *ngIf="isInFavorites(event)==false">
+                    <button ion-button color="none" icon-only (click)="addFavorites(event)">
+                    <img class="icon" src="assets/imgs/fav_off.png">
+                    </button>
                 </div>
-                <div style="display:inline-block;width: 39%;">
-                    <button ion-button color="none" icon-only (click)="shareEvent(event)">
-                            <img class="icon" src="assets/imgs/share.png">
-                        </button>
-                    <div *ngIf="isInFavorites(event)==false">
-                        <button ion-button color="none" icon-only (click)="addFavorites(event)">
-                        <img class="icon" src="assets/imgs/fav_off.png">
-                        </button>
-                    </div>
-                    <div *ngIf="isInFavorites(event)==true">
-                        <button ion-button  color="none" icon-only (click)="deleteFavorites(event)">
-                        <img class="icon" src="assets/imgs/fav_on.png">
-                        </button>
-                    </div>
+                <div *ngIf="isInFavorites(event)==true">
+                    <button ion-button  color="none" icon-only (click)="deleteFavorites(event)">
+                    <img class="icon" src="assets/imgs/fav_on.png">
+                    </button>
+                </div>
             </div>
             <div (click)="loadEventDetail(event)">
                 <img src={{event.photo}}>
