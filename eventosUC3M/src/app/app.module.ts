@@ -18,6 +18,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 //Services
 import {EventService} from '../services/event.service';
 import {NotificationService} from '../services/notification.service';
+import { LoginPage } from '../pages/login/login';
+import { AuthentificationService } from '../services/authentification.service';
+
+
+import { AngularFireModule } from 'angularfire2';
+import { FIREBASE_CONFIG } from './firebase.credentials';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { NgxErrorsModule } from '@ultimate/ngxerrors';
 
 @NgModule({
   declarations: [
@@ -29,11 +38,16 @@ import {NotificationService} from '../services/notification.service';
     NotificationsPage,
     EventDetailPage,
     UserDetailPage,
-    ConfigNotificationsPage
+    ConfigNotificationsPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    NgxErrorsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,14 +59,17 @@ import {NotificationService} from '../services/notification.service';
     NotificationsPage,
     EventDetailPage,
     UserDetailPage,
-    ConfigNotificationsPage
+    ConfigNotificationsPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     EventService,
-    NotificationService
+    NotificationService,
+    AuthentificationService,
+    AngularFireAuth
   ]
 })
 export class AppModule {}

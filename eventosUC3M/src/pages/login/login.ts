@@ -1,12 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
+import {User} from '../../models/user.model';
+import { AuthentificationService } from '../../services/authentification.service';
+import { HomePage } from '../home/home';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -14,12 +11,39 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  @ViewChild(Nav) nav: Nav;
+  
+  loginForm: FormGroup;
+  loginError: string;
+  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, private authService: AuthentificationService, formB: FormBuilder) {
+    this.loginForm = formB.group({
+			email: ['', Validators.compose([Validators.required, Validators.email])],
+			password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
+		});
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+
+  login () {
+    let data = this.loginForm.value;
+
+		if (!data.email) {
+			return;
+		}
+
+		let credentials = {
+			email: data.email,
+			password: data.password
+    };
+    this.authService.login(credentials).then(
+      () =>  this.navCtrl.setRoot(HomePage),
+     // () => console.log('logged in'),
+				error => this.loginError = error.message
+    )
+}
 
 }

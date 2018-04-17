@@ -15,6 +15,8 @@ import {ConfigNotificationsPage} from '../pages/config-notifications/config-noti
 //import {NotificationsPage} from '../pages/notifications/notifications';
 //import {EventDetailPage} from '../pages/event-detail/event-detail';
 import {UserDetailPage} from '../pages/user-detail/user-detail';
+import { LoginPage } from '../pages/login/login';
+import { AuthentificationService } from '../services/authentification.service';
 
 
 
@@ -24,12 +26,12 @@ import {UserDetailPage} from '../pages/user-detail/user-detail';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
   user: User = USER;
   pages: Array<{title: string, component: any}>;
   userConfig: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: AuthentificationService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
