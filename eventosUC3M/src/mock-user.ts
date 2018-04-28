@@ -3,7 +3,7 @@ import {User} from './models/user.model';
 export const USER: User = {
     name: 'Marty',
     lastName: 'McFly',
-    email: 'marty@mcfly.com',
+    email: 'test@gmail.com',
     campus: 'Colmenarejo',
     categories: ['Informática', 'Deporte', 'Teatro'],
     avatar: 'assets/imgs/marty.png',

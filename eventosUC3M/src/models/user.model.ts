@@ -7,7 +7,6 @@ export interface User {
     lastName: string; 
     lastName2?: string;
     email: string;
-    password: string;
     campus: Campus;
     categories: Categories[];
     avatar: string;

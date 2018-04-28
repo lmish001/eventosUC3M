@@ -1,53 +1,59 @@
 import { Injectable} from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { User } from '../models/user.model';
-import { HomePage } from '../home'
 import * as firebase from 'firebase/app';
-import AuthProvider = firebase.auth.AuthProvider;
+import { AngularFireDatabase } from 'angularfire2/database';
+import {User} from '../models/user.model';
+//import AuthProvider = firebase.auth.AuthProvider;
 
 
 
 @Injectable()
 
 export class AuthentificationService {
-    private user: firebase.User;
-    constructor(private auth: AngularFireAuth){
-        auth.authState.subscribe(user => {
-			this.user = user;
-		});
+
+    private userRef = this.db.list<User>('Users')
+    user: firebase.User;
+    logged_in: boolean;
+    constructor(private auth: AngularFireAuth, private db: AngularFireDatabase){
+        this.logged_in=false;
     }
 
 
-   async login(credentials) {
-    console.log('Sign in with email');
-    return this.auth.auth.signInWithEmailAndPassword(credentials.email,
-         credentials.password);
-}
+    async login(credentials) {
+        console.log('Sign in with email');
+        const result = this.auth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
+        if (result) {
+            this.user = firebase.auth().currentUser;
+            this.logged_in==true;
+            //console.log(this.user.email);
+            return result;
+        }
+        
+    }
 
-/*login() {
-    console.log('Sign in with google');
-    return this.oauthSignIn(new firebase.auth.GoogleAuthProvider());
-}
+    getCurrentUser() {
+        //return this.user;
+       //return this.userRef;
+       return this.db.list('/Users', ref => ref.orderByChild('email').equalTo(this.user.email));
+        //let email = 'test@gmail.com';
+        
+    }
 
-private oauthSignIn(provider: AuthProvider) {
-if (!(<any>window).cordova) {
-    return this.auth.auth.signInWithPopup(provider);
-} else {
-    return this.auth.auth.signInWithRedirect(provider)
-    .then(() => {
-        return this.auth.auth.getRedirectResult().then( result => {
-            // This gives you a Google Access Token.
-            // You can use it to access the Google API.
-            let token = result.credential.accessToken;
-            // The signed-in user info.
-            let user = result.user;
-            console.log(token, user);
-        }).catch(function(error) {
-            // Handle Errors here.
-            alert(error.message);
-        });
-    });
-}
-}*/
+    getCurrentUserDetails(){
+       
+        //if(this.logged_in==true) return this.db.list('/Users', ref => ref.orderByChild('email').equalTo(this.user.email));
+       return this.user;
+    }
+
+    /*
+    this.items=db.list('/candidates_list',{
+     query:{
+    orderByChild:'email',
+    equalTo:'pranavkeke@gmail.com'
+  }})
+  .map(item => item.FirstName) as FirebaseListObservable<any[]>;
+    */
+
+
 
 }

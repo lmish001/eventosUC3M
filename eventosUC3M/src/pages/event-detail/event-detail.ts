@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {EventService} from '../../services/event.service';
 import {Event} from '../../models/event.model';
+import { User } from '../../models/user.model';
 
 declare var google: any;
 /**
@@ -19,8 +20,9 @@ declare var google: any;
 })
 export class EventDetailPage {
   event: Event;
-  isRegistered: boolean;
-  isFavorite: boolean;
+  user: User;
+  //isRegistered: boolean;
+  //isFavorite: boolean;
   @ViewChild('map') mapElement: ElementRef;
  
   constructor(public navCtrl: NavController, public navParams: NavParams, private eventService: EventService) {
@@ -28,12 +30,17 @@ export class EventDetailPage {
   
   ngOnInit() {
     this.event = this.navParams.get('param1');
-    this.isRegistered = this.eventService.isRegistered(this.event);
-    this.isFavorite = this.eventService.isInFavorites(this.event);
+    this.user = this.navParams.get('param2');
+    //this.isRegistered = this.eventService.isRegistered(this.event);
+    //this.isFavorite = this.eventService.isInFavorites(this.event);
   }
 
   ionViewDidLoad(){
     this.loadMap();
+  }
+
+  getDate(value: string): Date {
+    return new Date (value);
   }
 
   loadMap(){
@@ -67,26 +74,62 @@ export class EventDetailPage {
       position: map.getCenter()
     });
   }
+
   register(){
-  if (this.eventService.addInscriptions(this.event)) {
+    if(this.event.users_registered[0]=='0'){
       this.event.inscriptions+=1;
-      this.isRegistered=true;
+      this.event.users_registered=[this.user.key];
+      this.eventService.updateEvent(this.event);
+    }
+    else if(this.event.users_registered.indexOf(this.user.key)==-1){
+      this.event.inscriptions+=1;
+      this.event.users_registered.push(this.user.key);
+      this.eventService.updateEvent(this.event);
+    }
   }
-  }
+
   cancelRegistration(){
-    this.eventService.removeInscriptions(this.event);
+    this.event.users_registered.splice(this.event.users_favorites.indexOf(this.user.key), 1)
+    if(this.event.users_registered.length==0) {
+      this.event.users_registered=['0'];
+    } 
+    this.event.inscriptions -=1
+    this.eventService.updateEvent(this.event);
+  /*  this.eventService.removeInscriptions(this.event);
     this.event.inscriptions-=1;
-    this.isRegistered=false;
+    this.isRegistered=false;*/
+  }
+
+  isRegistered(){
+    if(this.event.users_registered[0]=='0' || this.event.users_registered.indexOf(this.user.key)==-1) return false;
+    return true;
+  }
+
+  isFavorite(){
+    if(this.event.users_favorites[0]=='0' || this.event.users_favorites.indexOf(this.user.key)==-1) return false;
+    return true;
   }
 
   addFavorites() {
-    this.eventService.addFavorites(this.event);
-    this.isFavorite=true;
+    if (this.event.users_favorites[0]=='0'){
+      this.event.users_favorites = [this.user.key];
+    }
+    else if (this.event.users_favorites.indexOf(this.user.key)==-1) {
+      this.event.users_favorites.push(this.user.key);
+    }    
+    this.eventService.updateEvent(this.event);
+    /*this.eventService.addFavorites(this.event);
+    this.isFavorite=true;*/
   }
 
   deleteFavorites() {
-    this.eventService.removeFavorites(this.event);
-    this.isFavorite = false;
+    this.event.users_favorites.splice(this.event.users_favorites.indexOf(this.user.key), 1)
+    if(this.event.users_favorites.length==0) {
+      this.event.users_favorites=['0'];
+    } 
+    this.eventService.updateEvent(this.event);
+    /*this.eventService.removeFavorites(this.event);
+    this.isFavorite = false;*/
   }
 
   shareEvent(value: Event) {

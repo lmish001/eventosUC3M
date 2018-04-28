@@ -14,7 +14,8 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-card *ngFor="let event of events" class="advanced-background" >
+    <div *ngFor="let user of user$ |async ">{{currentUser(user)}}</div>
+    <ion-card *ngFor="let event of events$ |async " class="advanced-background" >
       <ion-card-content>
             <div class="card-title-only">
                     <ion-card-title style="font-size: 16px; font-weight: bold;"> {{event.name}}</ion-card-title>
@@ -34,14 +35,14 @@
                     </button>
                 </div>
             </div>
-            <div (click)="loadEventDetail(event)">
+            <div (click)="loadEventDetail(event, user)">
                 <img src={{event.photo}}>
                 <div class="columna">
                     <div class="card-subtitle"><img class="little_icon" src="assets/imgs/place.png">{{event.campus}}</div>
                     <div class="card-subtitle"><img class="little_icon" src="assets/imgs/people.png">{{event.inscriptions}} inscritos</div>
                 </div>
                 <div class="columna">
-                    <div class="card-subtitle"><img class="little_icon" src="assets/imgs/date.png">{{event.date.toLocaleDateString()}}</div>
+                    <div class="card-subtitle"><img class="little_icon" src="assets/imgs/date.png">{{getDate(event.date).toLocaleDateString()}}</div>
                     <div class="card-subtitle"><img class="little_icon" src="assets/imgs/label.png">{{event.credits}} créditos</div>
                 </div>
             </div>

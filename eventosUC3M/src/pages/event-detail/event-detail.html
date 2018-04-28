@@ -25,8 +25,8 @@
             <div class="card-subtitle"><img class="little_icon" src="assets/imgs/people.png">{{event.inscriptions}} inscritos</div>
         </div>
         <div class="columna">
-            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/date.png">{{event.date.toLocaleDateString()}}</div>
-            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/time.png">{{event.date.getHours()}}:{{event.date.getMinutes()}}</div>
+            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/date.png">{{getDate(event.date).toLocaleDateString()}}</div>
+            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/time.png">{{getDate(event.date).getHours()}}:{{getDate(event.date).getMinutes()}}</div>
             <div class="card-subtitle"><img class="little_icon" src="assets/imgs/label.png">{{event.credits}} créditos</div>
     </div>
     <h2>Descripción</h2> 
@@ -42,10 +42,10 @@
 
     <div #map id="map"></div> 
     
-    <div class="columna" *ngIf="isRegistered==true">
+    <div class="columna" *ngIf="isRegistered()==true">
         <button ion-button small color="danger" (click)="cancelRegistration()">Cancelar inscripción</button>
     </div>
-    <div class="columna" *ngIf="isRegistered==false">
+    <div class="columna" *ngIf="isRegistered()==false">
         <button ion-button small color="secondary" (click)="register()">inscribirse</button>
     </div>
     <button ion-button small color="secondary">Exportar al Calendario</button>
@@ -54,12 +54,12 @@
         <button ion-button color="none" icon-only (click)="shareEvent(event)">
                 <img class="icon" src="assets/imgs/share.png">
             </button>
-        <div *ngIf="isFavorite==false">
+        <div *ngIf="isFavorite()==false">
             <button ion-button color="none" icon-only (click)="addFavorites(event)">
             <img class="icon" src="assets/imgs/fav_off.png">
             </button>
         </div>
-        <div *ngIf="isFavorite==true">
+        <div *ngIf="isFavorite()==true">
             <button ion-button  color="none" icon-only (click)="deleteFavorites(event)">
             <img class="icon" src="assets/imgs/fav_on.png">
             </button>

@@ -1,19 +1,58 @@
 import {Event} from '../models/event.model';
 import {EVENTS} from '../mock-events-database';
 import {USER} from '../mock-user';
+import {User} from '../models/user.model';
 import { Injectable } from '@angular/core';
+import {AngularFireDatabase} from 'angularfire2/database';
+import * as firebase from 'firebase/app';
+import { AuthentificationService } from './authentification.service';
 
 @Injectable()
 export class EventService {
 
-  
-    constructor() { }
+    private eventsRef = this.db.list<Event>('Events')
+    private userRef = this.db.list<User>('Users')
+    private list;
+    user: firebase.User;
 
-    getEvents(): Event[] {
-        return EVENTS;
+
+    constructor(private db: AngularFireDatabase, private auth: AuthentificationService) { 
+        //this.user = auth.getCurrentUser();
+        //console.log(this.user.email);
     }
 
-    getInscriptions(): Event[] {
+    getEvents(){
+
+         //return this.db.list('/Events', ref => ref.orderByChild('name').equalTo('Taller de Improvisación '));
+
+    //console.log (this.db.list('/Events', ref => ref.orderByChild('name').equalTo('Taller')));
+       return this.eventsRef;
+    }
+
+    addEvent(value: Event) {
+        return this.eventsRef.push(value);
+    }
+
+    updateEvent (value: Event) {
+        return this.eventsRef.update(value.key, value);
+    }
+
+   /* isInFavorites(value: Event) {
+        return this.db.list('/Users', ref => ref.orderByChild('favorites').equalTo(value.name));
+    }
+
+    addFavorites (value: Event) {
+        this.eventsRef.update(value.key, value);
+    }*/
+
+
+ 
+
+
+
+
+
+    /*getInscriptions(): Event[] {
         if(USER.inscriptions[0]==null){
                 return null;
         }
@@ -33,31 +72,14 @@ export class EventService {
         }
         return USER.favorites;
     }
+*/
 
-    isInFavorites(value: Event): boolean {
-        if (USER.favorites.indexOf(value)==-1){
-            return false;
-        }
-        return true;
-    }
 
-    addEvent(value: Event) {
-        EVENTS.push(value);
-    }
+    
 
-    addFavorites (value: Event) {
-        if (USER.favorites[0]==null){
-            USER.favorites = [value];
-        }
-        else if (USER.favorites.indexOf(value)==-1) {
-            USER.favorites.push(value);
-        } 
-    }
 
-    removeFavorites (value: Event) {
-        USER.favorites.splice(USER.favorites.indexOf(value), 1);
-    }
 
+/*
     addInscriptions (value: Event): number {
         if(USER.inscriptions[0]==null){
             USER.inscriptions = [value];
@@ -72,5 +94,5 @@ export class EventService {
 
     removeInscriptions (value: Event) {
         USER.inscriptions.splice(USER.inscriptions.indexOf(value), 1);
-    }
+    }*/
 }
