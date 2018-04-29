@@ -62,7 +62,10 @@ export class UserDetailPage {
 
   updateCategory(value: Categories, userCategories: Categories []){
     if(this.categorySelected(value, userCategories)==false) {
-      if(userCategories.length==0) {
+      if(!userCategories) {
+        userCategories = [value];
+      }
+      else if(userCategories.length==0) {
         userCategories = [value];
       }
       else {
@@ -80,6 +83,7 @@ export class UserDetailPage {
   }
 
   categorySelected (category: Categories, userCategories: Categories []) {
+    if(!userCategories) return false;
     if(userCategories.length==0) return false;
     if(userCategories.indexOf(category)==-1) return false;
     return true;
