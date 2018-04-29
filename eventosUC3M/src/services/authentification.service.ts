@@ -18,41 +18,25 @@ export class AuthentificationService {
         this.logged_in=false;
     }
 
-
     async login(credentials) {
         console.log('Sign in with email');
         const result = this.auth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
         if (result) {
             this.user = firebase.auth().currentUser;
             this.logged_in==true;
-            //console.log(this.user.email);
             return result;
         }
         
     }
 
     getCurrentUser() {
-        //return this.user;
-       //return this.userRef;
-       return this.db.list('/Users', ref => ref.orderByChild('email').equalTo(this.user.email));
-        //let email = 'test@gmail.com';
-        
+       return this.db.list('/Users', ref => ref.orderByChild('email').equalTo(this.user.email));       
     }
 
-    getCurrentUserDetails(){
-       
-        //if(this.logged_in==true) return this.db.list('/Users', ref => ref.orderByChild('email').equalTo(this.user.email));
-       return this.user;
+    updateUser(value: User){
+        return this.userRef.update(value.key, value);
     }
 
-    /*
-    this.items=db.list('/candidates_list',{
-     query:{
-    orderByChild:'email',
-    equalTo:'pranavkeke@gmail.com'
-  }})
-  .map(item => item.FirstName) as FirebaseListObservable<any[]>;
-    */
 
 
 

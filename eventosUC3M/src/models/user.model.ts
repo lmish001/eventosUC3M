@@ -13,6 +13,6 @@ export interface User {
     ntf_evCanc: boolean;
     ntf_evMod: boolean;
     ntf_evNew: boolean;
-    favorites: Event[];
-    inscriptions: Event[];
+    //favorites: Event[];
+    //inscriptions: Event[];
 }

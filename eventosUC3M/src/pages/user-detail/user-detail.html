@@ -17,9 +17,10 @@
 
 
 <ion-content padding *ngFor="let user of user$ | async">
+    <div >{{currentUser(user)}}</div>
     <div class="columna">
       <ion-avatar item-start>
-          <img src="assets/imgs/marty.png">
+          <img src={{user.avatar}}>
       </ion-avatar>
     </div>
     <div class="columna2">
@@ -33,7 +34,7 @@
     <ion-list>
         <ion-item>
           <ion-label>Campus</ion-label>
-          <ion-select [(ngModel)]="user.campus" placeholder={{user.campus}}>
+          <ion-select [(ngModel)]="user.campus" placeholder={{user.campus}} (ionChange)="updateCampus()">
             <ion-option>Leganés</ion-option>
             <ion-option>Getafe</ion-option>
             <ion-option>Colmenarejo</ion-option>
@@ -44,8 +45,16 @@
 
 
       <p>Temas</p>
-      <p>{{user.categories}}</p>
-      
+
+      <div *ngFor="let category of categories">
+           <ion-item>
+          <ion-label>{{category}}</ion-label>
+          <ion-checkbox [checked]="categorySelected(category, user.categories)" (ionChange)="updateCategory(category, user.categories)"></ion-checkbox>
+          
+          </ion-item>
+        </div>
+
+         
 
 
 </ion-content>

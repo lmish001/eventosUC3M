@@ -3,7 +3,7 @@ import {NavController} from 'ionic-angular';
 import {EventService} from '../../services/event.service';
 import {Event} from '../../models/event.model';
 import {EventDetailPage} from '../event-detail/event-detail';
-import {NotificationsPage} from '../notifications/notifications';
+import {NotificationsPage} from '../notifications/notifications'; 
 import { Observable } from 'rxjs/Observable';
 import { AuthentificationService } from '../../services/authentification.service';
 import { User } from '../../models/user.model';
