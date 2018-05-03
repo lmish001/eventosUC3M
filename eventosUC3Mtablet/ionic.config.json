@@ -1,0 +1,8 @@
+{
+  "name": "eventosUC3Mtablet",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
