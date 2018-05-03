@@ -1,12 +1,13 @@
-import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
-import {EventService} from '../../services/event.service';
-import {Event} from '../../models/event.model';
-import {EventDetailPage} from '../event-detail/event-detail';
-import {NotificationsPage} from '../notifications/notifications'; 
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { EventService } from '../../services/event.service';
+import { Event } from '../../models/event.model';
+import { EventDetailPage } from '../event-detail/event-detail';
+import { NotificationsPage } from '../notifications/notifications'; 
 import { Observable } from 'rxjs/Observable';
 import { AuthentificationService } from '../../services/authentification.service';
 import { User } from '../../models/user.model';
+import { Categories } from '../../globalTypes';
 
 @Component({
   selector: 'page-home',
@@ -16,6 +17,7 @@ export class HomePage {
   events$: Observable <any[]>;
   user$: Observable <any[]>;
   user: User;
+  categories: Categories [] =  ['Informática' ,'Economía','Literatura','Ciencia','Software','Ciberseguridad','Historia','Música','Deporte','Teatro']
   constructor(public navCtrl: NavController, private eventService: EventService, private auth: AuthentificationService) {
   }
 
@@ -104,8 +106,24 @@ export class HomePage {
   }
 
   shareEvent(value: Event) {
+
   }
 
   search() {
   }
+
+  categorySelected (eventCategories: Categories[], userCategories: Categories []) {
+    if (!userCategories) return true; //Si el usuario no ha marcado intereses, se les enseña todos los eventos
+
+    for (let i in userCategories) {
+      if (eventCategories.indexOf(userCategories[i])!=-1) return true;
+    }
+
+    return false;
+    /*if(!userCategories) return false;
+    if(userCategories.length==0) return false;
+    if(userCategories.indexOf(category)==-1) return false;
+    return true;*/
+  }
+
 }

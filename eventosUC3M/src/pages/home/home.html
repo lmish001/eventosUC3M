@@ -16,7 +16,7 @@
 <ion-content padding>
     <div *ngFor="let user of user$ |async ">{{currentUser(user)}}</div>
     <ion-card *ngFor="let event of events$ |async " class="advanced-background" >
-      <ion-card-content>
+      <ion-card-content *ngIf = "categorySelected(event.categories, user.categories)"> 
             <div class="card-title-only">
                     <ion-card-title style="font-size: 16px; font-weight: bold;"> {{event.name}}</ion-card-title>
             </div>
