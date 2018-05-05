@@ -1,0 +1,73 @@
+<!--
+  Generated template for the EventDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{event.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div class="foto">  
+        <img src = {{event.photo}}>
+    </div> 
+    <div class="columna">
+            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/place.png">{{event.campus}}</div>
+            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/education.png">{{event.classroom}}</div>
+            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/people.png">{{event.inscriptions}} inscritos</div>
+        </div>
+        <div class="columna">
+            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/date.png">{{getDate(event.date).toLocaleDateString()}}</div>
+            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/time.png">{{getDate(event.date).getHours()}}:{{getDate(event.date).getMinutes()}}</div>
+            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/label.png">{{event.credits}} créditos</div>
+    </div>
+    <h2>Descripción</h2> 
+    <p>{{event.description}}</p>
+    <h2>Contacto</h2> 
+    <p>{{event.contact}}</p>
+    <p>Organizador: {{event.organizer}}</p>
+    <div style="display: inline-block">
+        Página web: {{event.webpage}}<div class="card-subtitle"><img class="icon" src="assets/imgs/web.png"></div>
+    </div>
+    <p></p>
+    <p>Categorias: {{event.categories}}</p>
+
+    <div #map id="map"></div> 
+    
+    <div class="columna" *ngIf="isRegistered()==true">
+        <button ion-button small color="danger" (click)="cancelRegistration()">Cancelar inscripción</button>
+    </div>
+    <div class="columna" *ngIf="isRegistered()==false&&myEvent()==false">
+        <button ion-button small color="secondary" (click)="register()">inscribirse</button>
+    </div>
+    <div class="columna" *ngIf="myEvent()==true">
+            <button ion-button small color="primary" (click)="editEvent()">Editar evento</button>
+    </div>
+    <button ion-button small color="secondary">Exportar al Calendario</button>
+    
+    <div style="display:inline-block;width: 100%;">
+        <button ion-button color="none" icon-only (click)="shareEvent(event)">
+                <img class="icon" src="assets/imgs/share.png">
+            </button>
+        <div *ngIf="isFavorite()==false && myEvent()==false">
+            <button ion-button color="none" icon-only (click)="addFavorites(event)">
+            <img class="icon" src="assets/imgs/fav_off.png">
+            </button>
+        </div>
+        <div *ngIf="isFavorite()==true">
+            <button ion-button  color="none" icon-only (click)="deleteFavorites(event)">
+            <img class="icon" src="assets/imgs/fav_on.png">
+            </button>
+        </div>
+    </div>
+</ion-content>
+
+

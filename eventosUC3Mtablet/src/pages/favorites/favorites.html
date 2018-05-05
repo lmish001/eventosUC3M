@@ -1,0 +1,63 @@
+<!--
+  Generated template for the FavoritesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-footer>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <button ion-button color="light" icon-only (click)="search()">
+        <img class="icon" src="assets/imgs/search.png">
+      </button>
+    <button ion-button  color="light" icon-only (click)="loadNotifications()">
+        <img class="icon" src="assets/imgs/notify.png">
+    </button>
+    <ion-title><h1>Me intresa</h1></ion-title>
+  </ion-navbar>
+</ion-footer>
+
+
+<ion-content padding>
+    <div *ngIf="hasFavorites==false">Todavía no tiene ningún evento guardado en favoritos</div>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-3 *ngFor="let event of eventArray">
+                    <ion-card class="advanced-background" >
+                            <ion-card-content>
+                                <div>
+                                    <div class="card-title-only">
+                                        <ion-card-title style="font-size: 16px; font-weight: bold;" (click)="loadEventDetail(event)"> {{event.name}}</ion-card-title>
+                                    </div>
+                                    <div style="display:inline-block;width: 39%;">
+                                        <button ion-button color="none" icon-only (click)="shareEvent(event)">
+                                                <img class="icon" src="assets/imgs/share.png">
+                                            </button>
+                                            <button ion-button  color="none" icon-only (click)="deleteFavorites(event)">
+                                            <img class="icon" src="assets/imgs/fav_on.png">
+                                            </button>
+                                        
+                                    </div>
+                                    <div (click)="loadEventDetail(event)">
+                                        <img src={{event.photo}}>
+                                        <div class="columna">
+                                            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/place.png">{{event.campus}}</div>
+                                            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/people.png">{{event.inscriptions}} inscritos</div>
+                                        </div>
+                                        <div class="columna">
+                                            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/date.png">{{getDate(event.date).toLocaleDateString()}}</div>
+                                            <div class="card-subtitle"><img class="little_icon" src="assets/imgs/label.png">{{event.credits}} créditos</div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="isRegistered(event)==true">
+                                        <p>¡Ya estás inscrito!</p>
+                                    </div>
+                                </div>
+                            </ion-card-content>
+                          </ion-card> 
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

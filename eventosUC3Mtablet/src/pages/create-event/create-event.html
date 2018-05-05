@@ -1,0 +1,134 @@
+<!--
+  Generated template for the CreateEventPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-footer>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title><h1>Crear evento</h1></ion-title>
+    </ion-navbar>
+  </ion-footer>
+
+<ion-content padding>
+
+
+
+<form [formGroup]="eventForm">
+        <ion-item>
+            <ion-input type="text" placeholder="Nombre evento" formControlName="nombreEvento"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-textarea type="text" placeholder="Descripción" formControlName="descripcion"></ion-textarea>
+        </ion-item>
+
+        <h4>No se podrá cambiar la foto una vez que está publicado el evento</h4>
+        <div class="progress-container spacing-container">    
+            <progress     
+                class="upload-progress"    
+                [value]="uploadPercent | async"     
+                max="100">    
+            </progress>    
+        </div>
+        <section class="spacing-container">   
+            <label for="file">File:</label>    
+            <input type="file" (change)="previewFile($event)" accept=".png,.jpg," />    
+        </section>
+        <section>   
+            <button (click)="uploadFile()" [disabled]="!(previewURL | async)||(uploadURL | async)">Upload</button>    
+        </section>        
+        <div *ngIf="uploadURL | async; let uploadSrc">    
+            {{setImage(uploadSrc)}}    
+            </div>
+            <div class="preview" *ngIf="previewURL | async; let previewSrc">   
+            <img [src]="previewSrc" />   
+            </div>
+            <section>    
+                <button (click)="deleteUpload()" [disabled]="!(uploadURL | async)"> Delete </button>   
+            </section>
+
+            <ion-item>
+                <ion-label>Fecha y hora del evento</ion-label>
+                <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [min] = "minDate"  formControlName="fecha"></ion-datetime>
+            </ion-item>
+            
+            <ion-item>
+                <ion-label>Lugar del evento</ion-label>
+                <ion-select formControlName="campus" placeholder="Seleccione campus">
+                <ion-option>Leganés</ion-option>
+                <ion-option>Getafe</ion-option>
+                <ion-option>Colmenarejo</ion-option>
+                <ion-option>Puerta de Toledo</ion-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-input type="text" placeholder="Aula" formControlName="aula"></ion-input>
+            </ion-item>
+
+            <ion-list radio-group formControlName="creditos">
+                <ion-list-header>
+                    Créditos 
+                </ion-list-header>
+                
+                <ion-item>
+                    <ion-label>0</ion-label>
+                    <ion-radio checked="true" value=0></ion-radio>
+                </ion-item>
+                
+                <ion-item>
+                    <ion-label>3</ion-label>
+                    <ion-radio value=3></ion-radio>
+                </ion-item>  
+            </ion-list>
+
+            <ion-item>
+                <ion-input type="text" placeholder="Organizador del evento" formControlName="organizador"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-input type="text" placeholder="Email de contacto" formControlName="contacto"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" placeholder="Página web" formControlName="paginaWeb"></ion-input>
+            </ion-item>
+            <h4>Se debe marcar al menos 1 categoría</h4>
+            <div *ngFor="let category of categories">
+       
+                <ion-item>
+                <ion-label>{{category}}</ion-label>
+                <ion-checkbox (ionChange)= "onChange(category)"></ion-checkbox>
+                </ion-item>
+            </div>
+            <button ion-button full type="submit" [disabled]="!eventForm.valid" (click)="createEvent()" >Crear Evento</button>
+    </form>
+
+    <div class="upload-form">
+       
+      
+
+        
+
+        
+
+    
+    
+
+
+       <!-- <section class="control-bar" *ngIf="uploadState | async; let state">     
+          <button (click)="cancelUpload()" [disabled]="!(state === 'paused' || state === 'running')"> Cancel </button>    
+        </section> -->  
+   
+      </div>
+
+
+
+
+
+
+
+
+</ion-content>

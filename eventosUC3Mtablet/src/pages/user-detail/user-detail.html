@@ -1,0 +1,60 @@
+<!--
+  Generated template for the UserDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title><h1>Mi cuenta</h1></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding *ngFor="let user of user$ | async">
+    <div >{{currentUser(user)}}</div>
+    <div class="columna">
+      <ion-avatar item-start>
+          <img src={{user.avatar}}>
+      </ion-avatar>
+    </div>
+    <div class="columna2">
+      <h2>{{user.name}} {{user.lastName}} {{user.lastName2}}</h2>
+      <h3>{{user.email}}</h3>
+      <button ion-button small color="danger" (click) = "logout()">Cerrar Sesion</button>
+    </div>
+    
+    <h4>Preferencias</h4>
+    
+    <ion-list>
+        <ion-item>
+          <ion-label>Campus</ion-label>
+          <ion-select [(ngModel)]="user.campus" placeholder={{user.campus}} (ionChange)="updateCampus()">
+            <ion-option>Leganés</ion-option>
+            <ion-option>Getafe</ion-option>
+            <ion-option>Colmenarejo</ion-option>
+            <ion-option>Puerta de Toledo</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list> 
+
+
+      <p>Temas</p>
+
+      <div *ngFor="let category of categories">
+           <ion-item>
+          <ion-label>{{category}}</ion-label>
+          <ion-checkbox [checked]="categorySelected(category, user.categories)" (ionChange)="updateCategory(category, user.categories)"></ion-checkbox>
+          
+          </ion-item>
+        </div>
+
+         
+
+
+</ion-content>

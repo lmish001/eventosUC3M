@@ -1,0 +1,52 @@
+<!--
+  Generated template for the NotificationsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>Notificaciones</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+      <ion-card *ngFor="let notification of notificationArray" class="advanced-background" >
+          <ion-card-content *ngIf="notification.type=='cancelado'" style="background-color:#ff8989" >
+            <div (click)="loadEventDetail(notification)">
+                <p><i>{{getDate(notification.date).toLocaleDateString()}} {{getDate(notification.date).getHours()}}:{{getDate(notification.date).getMinutes()}} se ha cancelado el evento:</i></p>
+              <ion-card-title> {{notification.eventName}}</ion-card-title>
+              <img src={{notification.eventPhoto}}>
+              <div class="columna">
+                <div class="card-subtitle"><img class="little_icon" src="assets/imgs/place.png">{{notification.eventPlace}}</div>
+                <div class="card-subtitle"><img class="little_icon" src="assets/imgs/people.png">{{notification.eventRegistered}} inscritos</div>
+              </div>
+              <div class="columna">
+                <div class="card-subtitle"><img class="little_icon" src="assets/imgs/date.png">{{getDate(notification.eventDate).toLocaleDateString()}}</div>
+                <div class="card-subtitle"><img class="little_icon" src="assets/imgs/label.png">{{notification.eventCredits}} créditos</div>
+              </div>
+            </div>
+          </ion-card-content>
+  
+          <ion-card-content *ngIf="notification.type=='modificado'">
+              <div (click)="loadEventDetail(notification)">
+                <p><i>{{getDate(notification.date).toLocaleDateString()}} {{getDate(notification.date).getHours()}}:{{getDate(notification.date).getMinutes()}} se ha modificado el evento:</i></p>
+                <ion-card-title> {{notification.eventName}}</ion-card-title>
+                <img src={{notification.eventPhoto}}>
+                  <div class="columna">
+                    <div class="card-subtitle"><img class="little_icon" src="assets/imgs/place.png">{{notification.eventPlace}}</div>
+                    <div class="card-subtitle"><img class="little_icon" src="assets/imgs/people.png">{{notification.eventRegistered}} inscritos</div>
+                </div>
+                <div class="columna">
+                    <div class="card-subtitle"><img class="little_icon" src="assets/imgs/date.png">{{getDate(notification.eventDate).toLocaleDateString()}}</div>
+                    <div class="card-subtitle"><img class="little_icon" src="assets/imgs/label.png">{{notification.eventCredits}} créditos</div>
+                </div>
+              </div>
+            </ion-card-content>
+  
+        </ion-card>
+  
+  </ion-content>

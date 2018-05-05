@@ -1,0 +1,40 @@
+<!--
+  Generated template for the ConfigNotificationsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Config. notificaciones</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<p>Deseo recibir notificaciones sobre: </p>
+    <ion-list>
+      <!--Add [(ngModel)] later -->
+        <ion-item>
+          <ion-label>Eventos cancelados</ion-label>
+          <ion-toggle checked="user.ntf_evCanc" [(ngModel)] = "user.ntf_evCanc"></ion-toggle>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label>Eventos modificados</ion-label>
+          <ion-toggle checked="user.ntf_evMod" [(ngModel)] = "user.ntf_evMod"></ion-toggle>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label>Eventos nuevos basados en mis preferencias</ion-label>
+          <ion-toggle checked="user.ntf_evNew" [(ngModel)] = "user.ntf_evNew"></ion-toggle>
+        </ion-item>
+      
+      </ion-list>
+
+</ion-content>
