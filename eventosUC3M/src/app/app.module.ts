@@ -4,7 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import {InscriptionsPage} from '../pages/inscriptions/inscriptions';
 import {FavoritesPage} from '../pages/favorites/favorites';
 import {NotificationsPage} from '../pages/notifications/notifications';
@@ -17,7 +16,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 //Services
 import {EventService} from '../services/event.service';
-import {NotificationService} from '../services/notification.service';
 import { LoginPage } from '../pages/login/login';
 import { AuthentificationService } from '../services/authentification.service';
 
@@ -32,7 +30,6 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors';
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
     InscriptionsPage,
     FavoritesPage,
     NotificationsPage,
@@ -53,7 +50,6 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
     InscriptionsPage,
     FavoritesPage,
     NotificationsPage,
@@ -67,7 +63,6 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     EventService,
-    NotificationService,
     AuthentificationService,
     AngularFireAuth
   ]
