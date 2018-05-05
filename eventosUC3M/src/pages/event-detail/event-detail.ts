@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {EventService} from '../../services/event.service';
 import {Event} from '../../models/event.model';
 import { User } from '../../models/user.model';
-
+import { ToastController } from 'ionic-angular';
 declare var google: any;
 /**
  * Generated class for the EventDetailPage page.
@@ -25,7 +25,7 @@ export class EventDetailPage {
   //isFavorite: boolean;
   @ViewChild('map') mapElement: ElementRef;
  
-  constructor(public navCtrl: NavController, public navParams: NavParams, private eventService: EventService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private eventService: EventService, public toastCtrl: ToastController) {
   }
   
   ngOnInit() {
@@ -78,22 +78,25 @@ export class EventDetailPage {
   register(){
     if(this.event.users_registered[0]=='0'){
       this.event.inscriptions+=1;
-      this.event.users_registered=[this.user.key];
+      this.event.users_registered=[this.user.email];
+      this.presentToastReg();
       this.eventService.updateEvent(this.event);
     }
-    else if(this.event.users_registered.indexOf(this.user.key)==-1){
+    else if(this.event.users_registered.indexOf(this.user.email)==-1){
       this.event.inscriptions+=1;
-      this.event.users_registered.push(this.user.key);
+      this.event.users_registered.push(this.user.email);
+      this.presentToastReg();
       this.eventService.updateEvent(this.event);
     }
   }
 
   cancelRegistration(){
-    this.event.users_registered.splice(this.event.users_favorites.indexOf(this.user.key), 1)
+    this.event.users_registered.splice(this.event.users_favorites.indexOf(this.user.email), 1)
     if(this.event.users_registered.length==0) {
       this.event.users_registered=['0'];
     } 
     this.event.inscriptions -=1
+    this.presentToastCancReg();
     this.eventService.updateEvent(this.event);
   /*  this.eventService.removeInscriptions(this.event);
     this.event.inscriptions-=1;
@@ -101,29 +104,30 @@ export class EventDetailPage {
   }
 
   isRegistered(){
-    if(this.event.users_registered[0]=='0' || this.event.users_registered.indexOf(this.user.key)==-1) return false;
+    if(this.event.users_registered[0]=='0' || this.event.users_registered.indexOf(this.user.email)==-1) return false;
     return true;
   }
 
   isFavorite(){
-    if(this.event.users_favorites[0]=='0' || this.event.users_favorites.indexOf(this.user.key)==-1) return false;
+    if(this.event.users_favorites[0]=='0' || this.event.users_favorites.indexOf(this.user.email)==-1) return false;
     return true;
   }
 
   addFavorites() {
     if (this.event.users_favorites[0]=='0'){
-      this.event.users_favorites = [this.user.key];
+      this.event.users_favorites = [this.user.email];
     }
-    else if (this.event.users_favorites.indexOf(this.user.key)==-1) {
-      this.event.users_favorites.push(this.user.key);
-    }    
+    else if (this.event.users_favorites.indexOf(this.user.email)==-1) {
+      this.event.users_favorites.push(this.user.email);
+    }  
+    this.presentToastAddFav();  
     this.eventService.updateEvent(this.event);
     /*this.eventService.addFavorites(this.event);
     this.isFavorite=true;*/
   }
 
   deleteFavorites() {
-    this.event.users_favorites.splice(this.event.users_favorites.indexOf(this.user.key), 1)
+    this.event.users_favorites.splice(this.event.users_favorites.indexOf(this.user.email), 1)
     if(this.event.users_favorites.length==0) {
       this.event.users_favorites=['0'];
     } 
@@ -133,6 +137,33 @@ export class EventDetailPage {
   }
 
   shareEvent(value: Event) {
+  }
+
+  presentToastAddFav() {
+    let toast = this.toastCtrl.create({
+      message: 'Añadido a "Estoy intresado"!',
+      duration: 1500,
+      position: 'bottom'
+    });
+    toast.present();
+  }
+
+  presentToastReg() {
+    let toast = this.toastCtrl.create({
+      message: 'Estas registrado!',
+      duration: 1500,
+      position: 'bottom'
+    });
+    toast.present();
+  }
+
+  presentToastCancReg() {
+    let toast = this.toastCtrl.create({
+      message: 'Inscripción cancelada',
+      duration: 1500,
+      position: 'bottom'
+    });
+    toast.present();
   }
 
 

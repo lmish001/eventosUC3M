@@ -7,17 +7,16 @@
 
   <ion-content>
       <ion-item>
-          <ion-thumbnail item-start>
-              <img src="assets/imgs/marty.png">
+
+          <ion-thumbnail item-start *ngIf="loggedInVal">
+              <img src="{{user.avatar}}">
           </ion-thumbnail>
-          <div *ngIf="getUser()!=null">
-            <h2 class="usuario">{{user$.name}} {{user$.lastName}} {{user$.lastName2}}</h2>
-        </div>         
+            <h2 *ngIf=" loggedInVal" class="usuario">{{user.name}} {{user.lastName}} {{user.lastName2}}</h2>      
           <ion-list>
               <button menuClose ion-item *ngFor="let u of userConfig" (click)="openPage(u)">
                 {{u.title}}
               </button>
-            <button ion-button small color="danger" style="float:left">Cerrar Sesion</button>
+            <button ion-button small color="danger" style="float:left" (click)="logout()">Cerrar Sesion</button>
           </ion-list>
         </ion-item>
     <ion-list>

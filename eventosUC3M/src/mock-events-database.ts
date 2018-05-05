@@ -1,7 +1,7 @@
 import {Event} from './models/event.model';
 
 export const EVENTS: Event[] = [
-    {name: 'Conferencia sobre Ciberseguridad', 
+  /*  {name: 'Conferencia sobre Ciberseguridad', 
     photo: 'http://cdn5.icemd.com/app/uploads/2016/09/Programa-Superior-Ciberseguridad-Compliance-ficha.jpg',
     date: new Date("May 25, 2018 10:30:00"),
     campus: 'Colmenarejo',
@@ -50,6 +50,6 @@ export const EVENTS: Event[] = [
     description: 'Taller de movimiento y expresión corporal a través de la improvisación: 6 €, además podrá participarse en la muestra del trabajo realizado en el Ciclo Imprevisto.',
     categories:  ['Teatro'],
     inscriptions: 0   
-    } 
+    } */
 
 ];

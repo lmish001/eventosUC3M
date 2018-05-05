@@ -9,7 +9,5 @@ export const USER: User = {
     avatar: 'assets/imgs/marty.png',
     ntf_evCanc: true,
     ntf_evMod: true,
-    ntf_evNew: false,
-    favorites: [null],
-    inscriptions:[null]
+    ntf_evNew: false
 };

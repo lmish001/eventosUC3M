@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Nav, Events } from 'ionic-angular';
 import {User} from '../../models/user.model';
 import { AuthentificationService } from '../../services/authentification.service';
 import { HomePage } from '../home/home';
@@ -17,7 +17,7 @@ export class LoginPage {
   loginError: string;
   
 
-  constructor(public navCtrl: NavController, private authService: AuthentificationService, formB: FormBuilder) {
+  constructor(public navCtrl: NavController, private authService: AuthentificationService, formB: FormBuilder, public events: Events) {
     this.loginForm = formB.group({
 			email: ['', Validators.compose([Validators.required, Validators.email])],
 			password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]

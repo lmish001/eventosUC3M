@@ -13,23 +13,25 @@ export class AuthentificationService {
 
     private userRef = this.db.list<User>('Users')
     user: firebase.User;
-    logged_in: boolean;
-    constructor(private auth: AngularFireAuth, private db: AngularFireDatabase){
-        this.logged_in=false;
+    constructor(public auth: AngularFireAuth, private db: AngularFireDatabase){
+        auth.authState.subscribe(user => {
+			this.user = user;
+		});
     }
 
     async login(credentials) {
         console.log('Sign in with email');
-        const result = this.auth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
-        if (result) {
-            this.user = firebase.auth().currentUser;
-            this.logged_in==true;
-            return result;
-        }
+        return this.auth.auth.signInWithEmailAndPassword(credentials.email,
+            credentials.password);
         
     }
 
+    logout () {
+    return this.auth.auth.signOut();
+    }
+
     getCurrentUser() {
+        this.user = firebase.auth().currentUser;
        return this.db.list('/Users', ref => ref.orderByChild('email').equalTo(this.user.email));       
     }
 

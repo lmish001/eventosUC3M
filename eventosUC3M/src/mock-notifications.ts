@@ -1,7 +1,7 @@
 import {Notification} from './models/notification.model';
 
 export const NOTIFICATIONS: Notification[] = [
-    {
+   /* {
         event:     {name: 'Taller de Improvisación ', 
         photo: 'https://lh3.googleusercontent.com/-UbCwqREaXs0/WWZHO-XI1pI/AAAAAAAAEKc/ONVd6q0qOpUlJpPAhOZaC7lddhVz91HlwCHMYCw/improvisation_thumb3?imgmax=800',
         date: new Date("May 23, 2018 18:00:00"),
@@ -32,5 +32,5 @@ export const NOTIFICATIONS: Notification[] = [
         },
         type: 'cancelado',
         date: new Date("April 18, 2018 9:43:12")
-    }
+    }*/
 ];

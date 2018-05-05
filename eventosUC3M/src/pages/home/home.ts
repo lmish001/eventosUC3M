@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { AuthentificationService } from '../../services/authentification.service';
 import { User } from '../../models/user.model';
 import { Categories } from '../../globalTypes';
+import { ToastController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -17,13 +18,20 @@ export class HomePage {
   events$: Observable <any[]>;
   user$: Observable <any[]>;
   user: User;
+  userArray: User[];
+  eventArray: Event[];
   categories: Categories [] =  ['Informática' ,'Economía','Literatura','Ciencia','Software','Ciberseguridad','Historia','Música','Deporte','Teatro']
-  constructor(public navCtrl: NavController, private eventService: EventService, private auth: AuthentificationService) {
+  constructor(public navCtrl: NavController, private eventService: EventService, private auth: AuthentificationService, public toastCtrl: ToastController) {
   }
 
   ngOnInit() {
-    this.getEvents();
     this.getUser();
+    this.getEvents();
+
+  }
+
+  onViewWillLeave() {
+
   }
 
   getDate(value: string): Date {
@@ -41,6 +49,23 @@ export class HomePage {
       key: c.payload.key, ...c.payload.val()
       }));
       }); ;
+      this.events$.forEach(value=>this.getEventsArray(value));
+  }
+
+  getEventsArray(value: any) {
+    this.eventArray = [];
+    for (let v of value) {
+      if (!this.eventArray) {
+        if (this.categorySelected(v.categories, this.user.categories)&&this.checkDate(v.date)) {
+          this.eventArray = [v];
+        }
+      }
+      else {
+        if (this.categorySelected(v.categories, this.user.categories)&&this.checkDate(v.date)) {
+          this.eventArray.push(v);
+        }
+      } 
+    }
   }
 
   /*addEvent(value: Event) {
@@ -65,16 +90,20 @@ export class HomePage {
       key: c.payload.key, ...c.payload.val()
       }));
       }); ;
-   
+      this.user$.forEach(value=>this.currentUser(value));
      
   }
-  currentUser(value:User) {
-    this.user = value;
-    //console.log("current user: "+this.user.email);
+  currentUser(value:any) {
+    for (let v of value) {
+      if (!this.userArray) this.userArray = [v];
+      else { this.userArray.push(v);}
+     
+    }
+    this.user = this.userArray[0];
   }
 
-  loadEventDetail(value: Event, user: User) {
-    this.navCtrl.push(EventDetailPage, {param1: value, param2: user});
+  loadEventDetail(value: Event) {
+    this.navCtrl.push(EventDetailPage, {param1: value, param2: this.user});
   }
 
   loadNotifications() {
@@ -82,26 +111,29 @@ export class HomePage {
   }
 
   addFavorites(value: Event) {
-    if (value.users_favorites[0]=='0'){
-      value.users_favorites = [this.user.key];
+    let i = this.eventArray.indexOf(value);
+    if (this.eventArray[i].users_favorites[0]=='0'){
+      this.eventArray[i].users_favorites = [this.user.email];
     }
-    else if (value.users_favorites.indexOf(this.user.key)==-1) {
-      value.users_favorites.push(this.user.key);
-  }    
-    this.eventService.updateEvent(value);
+    else if (this.eventArray[i].users_favorites.indexOf(this.user.email)==-1) {
+      this.eventArray[i].users_favorites.push(this.user.email);
+  } 
+  this.presentToastAdd();
+  this.eventService.updateEvent(this.eventArray[i]);
   }
 
   deleteFavorites(value: Event) {
-    value.users_favorites.splice(value.users_favorites.indexOf(this.user.key), 1)
-    if(value.users_favorites.length==0) {
-      value.users_favorites=['0'];
+    let i = this.eventArray.indexOf(value);
+    this.eventArray[i].users_favorites.splice(this.eventArray[i].users_favorites.indexOf(this.user.email), 1)
+    if(this.eventArray[i].users_favorites.length==0) {
+      this.eventArray[i].users_favorites=['0'];
     } 
-    this.eventService.updateEvent(value);
+    this.eventService.updateEvent(this.eventArray[i]);
   }
 
   isInFavorites(value: Event): boolean {   
       if(value.users_favorites[0]=='0') return false;
-      if(value.users_favorites.indexOf(this.user.key)==-1) return false;
+      if(value.users_favorites.indexOf(this.user.email)==-1) return false;
       return true;
   }
 
@@ -120,10 +152,22 @@ export class HomePage {
     }
 
     return false;
-    /*if(!userCategories) return false;
-    if(userCategories.length==0) return false;
-    if(userCategories.indexOf(category)==-1) return false;
-    return true;*/
   }
+
+  checkDate (value: string) {
+    var curDate = new Date();
+    if (this.getDate(value) < curDate) return false;
+    return true;
+  }
+
+  presentToastAdd() {
+    let toast = this.toastCtrl.create({
+      message: 'Añadido a "Estoy intresado"!',
+      duration: 1500,
+      position: 'bottom'
+    });
+    toast.present();
+  }
+
 
 }

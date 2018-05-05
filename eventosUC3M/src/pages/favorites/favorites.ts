@@ -24,17 +24,24 @@ export class FavoritesPage {
   events$: Observable <any[]>;
   user$: Observable <any[]>;
   user: User;
+  hasFavorites: boolean;
+  userArray: User[];
+  eventArray: Event[];
   constructor(public navCtrl: NavController, public navParams: NavParams, private eventService: EventService, private auth: AuthentificationService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FavoritesPage');
   }
+  
 
   ngOnInit() {
-    this.getEvents();
+    this.hasFavorites = false;
     this.getUser();
+    this.getEvents();
   }
+
+
 
   getEvents(): void {
     this.events$ = this.eventService.getEvents().snapshotChanges() //retorna los cambios en la DB (key and value)
@@ -44,6 +51,19 @@ export class FavoritesPage {
       key: c.payload.key, ...c.payload.val()
       }));
       }); ;
+      this.events$.forEach(value=>this.getEventsArray(value));
+  }
+
+  getEventsArray(value: any) {
+    this.eventArray = [];
+    for (let v of value) {
+        if (v.users_favorites.indexOf(this.user.email)!=-1) {
+          if(!this.eventArray) this.eventArray = [v];
+          else this.eventArray.push(v);
+          this.hasFavorites = true;
+        }
+
+    }
   }
 
   /*addEvent(value: Event) {
@@ -58,35 +78,37 @@ export class FavoritesPage {
       return changes.map(c=> ({
       key: c.payload.key, ...c.payload.val()
       }));
-      }); ;     
+      }); ; 
+      this.user$.forEach(value=>this.currentUser(value));    
   }
 
-  currentUser(value:User) {
-    this.user = value;
-    //console.log("current user: "+this.user.email);
+
+  currentUser(value:any) {
+    for (let v of value) {
+      if (!this.userArray) this.userArray = [v];
+      else { this.userArray.push(v);}
+     
+    }
+    this.user = this.userArray[0];
   }
 
 
   deleteFavorites(value: Event) {
-    value.users_favorites.splice(value.users_favorites.indexOf(this.user.key), 1)
+    value.users_favorites.splice(value.users_favorites.indexOf(this.user.email), 1)
     if(value.users_favorites.length==0) {
       value.users_favorites=['0'];
+      this.hasFavorites = false;
     } 
     this.eventService.updateEvent(value);
   }
 
   isRegistered(value: Event): boolean{
     if(value.users_registered[0]=='0') return false;
-    if(value.users_registered.indexOf(this.user.key)==-1) return false;
+    if(value.users_registered.indexOf(this.user.email)==-1) return false;
     return true;
    // return this.eventService.isRegistered(value);
   }
 
-  isInFavorites(value: Event): boolean{
-    if(value.users_favorites[0]=='0') return false;
-    if(value.users_favorites.indexOf(this.user.key)==-1) return false;
-    return true;
-  }
 
   loadNotifications() {
     this.navCtrl.push(NotificationsPage);

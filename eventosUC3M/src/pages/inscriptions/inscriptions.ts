@@ -25,21 +25,24 @@ export class InscriptionsPage {
   events$: Observable <any[]>;
   user$: Observable <any[]>;
   user: User;
+  userArray: User[];
+  eventArray: Event[];
+  hasInscriptions: boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams, private eventService: EventService, private auth: AuthentificationService) {
   }
 
 
 
   ngOnInit() {
-    this.getEvents();
+    this.hasInscriptions = false;
     this.getUser();
-    //this.event = this.navParams.get('param1');
-   // this.isRegistered = this.eventService.isRegistered(this.event);
+    this.getEvents();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InscriptionsPage');
   }
+
 
   getDate(value: string): Date {
     return new Date (value);
@@ -53,7 +56,19 @@ export class InscriptionsPage {
       key: c.payload.key, ...c.payload.val()
       }));
       }); ;
+      this.events$.forEach(value=>this.getEventsArray(value));
   }
+
+  getEventsArray(value: any) {
+  this.eventArray = [];
+  for (let v of value) {
+      if (v.users_registered.indexOf(this.user.email)!=-1) {
+        if(!this.eventArray) this.eventArray = [v];
+        else this.eventArray.push(v);
+        this.hasInscriptions = true;
+      }
+  }
+}
 
   /*addEvent(value: Event) {
     this.eventService.addEvent(value);
@@ -77,12 +92,17 @@ export class InscriptionsPage {
       key: c.payload.key, ...c.payload.val()
       }));
       }); ;
-   
+      this.user$.forEach(value=>this.currentUser(value));
      
   }
 
-  currentUser(value:User) {
-    this.user = value;
+  currentUser(value:any) {
+    for (let v of value) {
+      if (!this.userArray) this.userArray = [v];
+      else { this.userArray.push(v);}
+     
+    }
+    this.user = this.userArray[0];
   }
 
   loadEventDetail(value: Event) {
@@ -95,16 +115,16 @@ export class InscriptionsPage {
 
   addFavorites(value: Event) {
     if (value.users_favorites[0]=='0'){
-      value.users_favorites = [this.user.key];
+      value.users_favorites = [this.user.email];
     }
-    else if (value.users_favorites.indexOf(this.user.key)==-1) {
-      value.users_favorites.push(this.user.key);
+    else if (value.users_favorites.indexOf(this.user.email)==-1) {
+      value.users_favorites.push(this.user.email);
   }    
     this.eventService.updateEvent(value);
   }
 
   deleteFavorites(value: Event) {
-    value.users_favorites.splice(value.users_favorites.indexOf(this.user.key), 1)
+    value.users_favorites.splice(value.users_favorites.indexOf(this.user.email), 1)
     if(value.users_favorites.length==0) {
       value.users_favorites=['0'];
     } 
@@ -113,7 +133,7 @@ export class InscriptionsPage {
 
   isInFavorites(value: Event): boolean {   
       if(value.users_favorites[0]=='0') return false;
-      if(value.users_favorites.indexOf(this.user.key)==-1) return false;
+      if(value.users_favorites.indexOf(this.user.email)==-1) return false;
       return true;
   }
 
@@ -124,10 +144,7 @@ export class InscriptionsPage {
   search() {
   }
 
-  isRegistered(value: Event): boolean {
-    if(value.users_registered[0]=='0') return false;
-    if(value.users_registered.indexOf(this.user.key)==-1) return false;
-    return true;
-  }
+
+
 
 }

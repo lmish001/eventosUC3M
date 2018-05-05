@@ -1,10 +1,11 @@
 import {Component } from '@angular/core';
-import {IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import {User} from '../../models/user.model';
 import {USER} from '../../mock-user';
 import { Observable } from 'rxjs/Observable';
 import { AuthentificationService } from '../../services/authentification.service';
 import { Categories } from '../../globalTypes';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the UserDetailPage page.
@@ -23,13 +24,19 @@ export class UserDetailPage {
   user$: Observable <User[]>;
   CurUser: User;
   categories: Categories [] =  ['Informática' ,'Economía','Literatura','Ciencia','Software','Ciberseguridad','Historia','Música','Deporte','Teatro']
+  private menu: MenuController;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthentificationService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthentificationService, menu: MenuController) {
+    this.menu = menu;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserDetailPage');
     this.getUser();
+  }
+
+  ionViewWillLeave() {
+    this.auth.updateUser(this.CurUser);
   }
 
   getUser(): void {
@@ -57,7 +64,7 @@ export class UserDetailPage {
   }
 
   updateCampus(){
-    this.auth.updateUser(this.CurUser);
+    //this.auth.updateUser(this.CurUser);
   }
 
   updateCategory(value: Categories, userCategories: Categories []){
@@ -79,7 +86,7 @@ export class UserDetailPage {
       }
     }
     this.CurUser.categories = userCategories;
-    this.auth.updateUser(this.CurUser);
+    
   }
 
   categorySelected (category: Categories, userCategories: Categories []) {
@@ -87,6 +94,12 @@ export class UserDetailPage {
     if(userCategories.length==0) return false;
     if(userCategories.indexOf(category)==-1) return false;
     return true;
+  }
+
+  logout() {
+    this.menu.close();
+    this.auth.logout();
+    this.navCtrl.setRoot(LoginPage);
   }
 
 

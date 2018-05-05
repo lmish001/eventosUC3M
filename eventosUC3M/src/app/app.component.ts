@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, ViewController } from 'ionic-angular';
+import { Nav, Platform, ViewController, Events, MenuController, App } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -29,11 +29,25 @@ export class MyApp {
 
   rootPage: any = LoginPage;
   user$: Observable <any[]>;
+  user: User;
+  loggedInVal: boolean = false;
+  userArray: User[];
+  logoutError: string;
   pages: Array<{title: string, component: any}>;
   userConfig: Array<{title: string, component: any}>;
+  private menu: MenuController;
+  private platform;
+  private app;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: AuthentificationService) {
+  constructor(platform: Platform, menu: MenuController, app: App, public statusBar: StatusBar, public splashScreen: SplashScreen, private authService: AuthentificationService, public events: Events) {
+    this.menu = menu;
+    this.platform = platform;
+    this.app = app;
     this.initializeApp();
+
+    events.subscribe('user:login', () => {
+      this.loggedIn();
+    });
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Inicio', component: HomePage },
@@ -56,15 +70,68 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    this.authService.auth.authState
+    .subscribe(
+      user => {
+        if (user) {
+          this.rootPage = HomePage;
+          this.loggedIn();
+        } else {
+          this.rootPage = LoginPage;
+        }
+      },
+      () => {
+        this.rootPage = LoginPage;
+      }
+    );
+ 
   }
 
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
+    this.menu.close();
     this.nav.setRoot(page.component);
   }
 
-  getUser(): void{
-    //this.user$ = this.auth.getCurrentUser();
+  loggedIn(): void{
+    this.menu.close();
+    console.log("logged in");
+    this.user$ = this.authService.getCurrentUser().snapshotChanges() //retorna los cambios en la DB (key and value)
+    .map(
+      /*
+      Estas líneas retornan un array de  objetos con el id del registro y su contenido
+      {
+        "key":"value",
+        contact.name,
+        contact.organization,
+       ...
+      }
+      */
+      changes => {
+      return changes.map(c=> ({
+      key: c.payload.key, ...c.payload.val()
+      }));
+      }); ;
+      this.user$.forEach(value=>this.currentUser(value));
+  }
+
+  currentUser(value:any) {
+    for (let v of value) {
+      if (!this.userArray) this.userArray = [v];
+      else { this.userArray.push(v);}
+     
+    }
+    this.user = this.userArray[0];
+    this.loggedInVal = true;
+  }
+
+  logout() {
+    this.menu.close();
+
+    this.authService.logout();
+    this.nav.setRoot(LoginPage);
+
   }
 }

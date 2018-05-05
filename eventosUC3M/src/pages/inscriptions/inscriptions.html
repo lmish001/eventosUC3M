@@ -21,9 +21,9 @@
 
 
 <ion-content padding>
-    <div *ngFor="let user of user$ |async ">{{currentUser(user)}}</div>
-    <ion-card *ngFor="let event of events$ | async" class="advanced-background" >
-      <ion-card-content *ngIf="isRegistered(event)==true">
+    <div *ngIf="!hasInscriptions">Todavía no está registrado en ningún evento</div>
+    <ion-card *ngFor="let event of eventArray" class="advanced-background" >
+      <ion-card-content>
             <ion-card-title style="font-size: 16px; font-weight: bold;"> {{event.name}}</ion-card-title>
             <div (click)="loadEventDetail(event)">
                 <img src={{event.photo}}>

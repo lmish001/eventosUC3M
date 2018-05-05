@@ -3,7 +3,14 @@ import {tNotification} from '../globalTypes';
 
 export interface Notification {
     key?: string;
-    event: Event;
+    eventKey: string;
+    publicado_por: string;
+    eventName: string;
+    eventPhoto: string;
+    eventDate: Date;
+    eventPlace: string;
+    eventCredits: number;
+    eventRegistered: number;
     type: tNotification;
-    date: Date;
+    date: any;
 }
