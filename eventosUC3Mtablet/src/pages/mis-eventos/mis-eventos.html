@@ -9,11 +9,10 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <button ion-button  color="none" icon-only (click) = "addEvent()">
-        <!-- <img class="icon" src="assets/imgs/fav_on.png"> -->
+    <button ion-button icon-only (click) = "addEvent()">
         crear evento
          </button>
-    <ion-title><h1>Mis eventos</h1></ion-title>
+    <ion-title>Mis eventos</ion-title>
   </ion-navbar>
 </ion-footer>
 
@@ -27,17 +26,10 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-col col-3>
-        <img src = "http://pngimages.net/sites/default/files/add-a-button-png-image-68116.png" (click) = "addEvent()">
-      </ion-col>
       <ion-col col-3 *ngFor="let event of eventArray">
           <ion-card  class="advanced-background" >
               <ion-card-content>
                     <ion-card-title style="font-size: 16px; font-weight: bold;"> {{event.name}}</ion-card-title>
-                    <button ion-button  color="none" icon-only (click)="editEvent(event)">
-                        <!-- <img class="icon" src="assets/imgs/fav_on.png"> -->
-                        editar evento
-                         </button>
                     <div (click)="loadEventDetail(event)">
                         <img src={{event.photo}}>
                         <div class="columna">
@@ -49,6 +41,9 @@
                             <div class="card-subtitle"><img class="little_icon" src="assets/imgs/label.png">{{event.credits}} créditos</div>
                         </div>
                     </div>
+                    <button ion-button  block icon-only (click)="editEvent(event)">
+                        editar evento
+                         </button>
                 </ion-card-content>
             </ion-card> 
         </ion-col>

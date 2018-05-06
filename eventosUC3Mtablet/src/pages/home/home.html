@@ -9,7 +9,7 @@
     <button ion-button clear color="light" icon-only (click)="loadNotifications()">
         <img class="icon" src="assets/imgs/notify.png">
     </button>
-    <ion-title><h1>Eventos UC3M</h1></ion-title>
+    <ion-title>Eventos UC3M</ion-title>
   </ion-navbar>
 </ion-footer>
 
@@ -23,26 +23,20 @@
                                           <ion-card-title style="font-size: 16px; font-weight: bold;"> {{event.name}}</ion-card-title>
                                   </div>
                                   <div style="display:inline-block;width: 39%;">
-                                      <button ion-button color="none" icon-only (click)="shareEvent(event)">
-                                              <img class="icon" src="assets/imgs/share.png">
-                                          </button>
-                                      <div *ngIf="isInFavorites(event)==false&&myEvent(event)==false">
-                                          <button ion-button color="none" icon-only (click)="addFavorites(event)">
-                                          <img class="icon" src="assets/imgs/fav_off.png">
-                                          </button>
-                                      </div>
-                                      <div *ngIf="isInFavorites(event)==true">
-                                          <button ion-button  color="none" icon-only (click)="deleteFavorites(event)">
-                                          <img class="icon" src="assets/imgs/fav_on.png">
-                                          </button>
-                                      </div>
-                                      <div *ngIf="myEvent(event)==true">
-                                            <button ion-button  color="none" icon-only (click)="editEvent(event)">
-                                           <!-- <img class="icon" src="assets/imgs/fav_on.png"> -->
-                                           editar evento
+                                        <button ion-button clear color="none" icon-only (click)="shareEvent(event)">
+                                                <img class="icon" src="assets/imgs/share.png">
+                                            </button>
+                                        <div *ngIf="isInFavorites(event)==false&&myEvent(event)==false">
+                                            <button ion-button clear color="none" icon-only (click)="addFavorites(event)">
+                                            <img class="icon" src="assets/imgs/fav_off.png">
                                             </button>
                                         </div>
-                                  </div>
+                                        <div *ngIf="isInFavorites(event)==true">
+                                            <button ion-button clear color="none" icon-only (click)="deleteFavorites(event)">
+                                            <img class="icon" src="assets/imgs/fav_on.png">
+                                            </button>
+                                        </div>
+                                </div>
                                   <div (click)="loadEventDetail(event)">
                                       <img src={{event.photo}}>
                                       <div class="columna">
@@ -54,6 +48,11 @@
                                           <div class="card-subtitle"><img class="little_icon" src="assets/imgs/label.png">{{event.credits}} créditos</div>
                                       </div>
                                   </div>
+                                  <div *ngIf="myEvent(event)==true">
+                                        <button ion-button block icon-only (click)="editEvent(event)">
+                                       editar evento
+                                        </button>
+                                    </div>
                               </ion-card-content>
                       
                           </ion-card>

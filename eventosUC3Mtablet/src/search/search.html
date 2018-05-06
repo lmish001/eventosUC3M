@@ -16,13 +16,13 @@
 <ion-content padding>
     <ion-searchbar (ionInput)="getInput($event)"></ion-searchbar>
     <button ion-button type="submit" (click)="submitBasicSearchForm()" block>Buscar evento</button>
-    
-    <p\n>Búsqueda Avanzada</p>
+    <ion-item></ion-item>
+    <h1>Búsqueda Avanzada</h1>
     <p>Quiero encontrar un evento en:</p>
     <form [formGroup]="searchForm">
         <ion-item>
             <ion-label></ion-label>
-            <ion-select formControlName="campus" placeholder="Todos los campus" text-center>
+            <ion-select formControlName="campus" placeholder="Todos los campus">
                 <ion-option value="todos_campus">Todos los campus</ion-option>
                 <ion-option>Leganés</ion-option>
                 <ion-option>Getafe</ion-option>
