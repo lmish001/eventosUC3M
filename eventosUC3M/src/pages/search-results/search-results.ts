@@ -51,9 +51,8 @@ export class SearchResultsPage {
     this.input = this.navParams.get('param5').toLowerCase();
     this.horaMin = this.navParams.get('param6');
     this.creditos = this.navParams.get('param7');
-    console.log (this.tiempo, this.campus, this.categoria, this.type, this.input, this.horaMin, this.creditos);
+   // console.log (this.tiempo, this.campus, this.categoria, this.type, this.input, this.horaMin, this.creditos);
     this.getUser();
-
     this.getEvents();
 
   }
@@ -82,9 +81,6 @@ export class SearchResultsPage {
       else {
         if (this.checkDate(v.date)&&v.name.toLowerCase().indexOf(this.input)!=-1) this.eventArray.push(v);
       }
-      
-      
-
     }
   }
 
@@ -213,17 +209,5 @@ export class SearchResultsPage {
   loadEventDetail(value: Event) {
     this.navCtrl.push(EventDetailPage, {param1: value, param2: this.user});
   }
-
-  /*updateResults() {
-
-  }
-
-  async newFilter () {
-    let alert = this.alertCtrl.create (
-      {
-
-      }
-    )
-  }*/
 
 }

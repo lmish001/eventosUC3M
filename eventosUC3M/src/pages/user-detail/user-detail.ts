@@ -35,9 +35,10 @@ export class UserDetailPage {
     this.getUser();
   }
 
-  ionViewWillLeave() {
-    this.auth.updateUser(this.CurUser);
-  }
+  async ionViewCanLeave() {
+    await this.auth.updateUser(this.CurUser);
+    return true;
+   }
 
   getUser(): void {
     this.user$ = this.auth.getCurrentUser().snapshotChanges() //retorna los cambios en la DB (key and value)
