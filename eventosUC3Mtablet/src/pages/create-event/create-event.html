@@ -52,7 +52,7 @@
 
             <ion-item>
                 <ion-label>Fecha y hora del evento</ion-label>
-                <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [min] = "minDate"  formControlName="fecha"></ion-datetime>
+                <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [min] = "minDate" hourValues="08,09,10,11,12,13,14,15,16,17,18,19,20,21 " minuteValues="00, 15, 30, 45" formControlName="fecha"></ion-datetime>
             </ion-item>
             
             <ion-item>
@@ -80,9 +80,14 @@
                 </ion-item>
                 
                 <ion-item>
-                    <ion-label>3</ion-label>
-                    <ion-radio value=3></ion-radio>
+                    <ion-label>1</ion-label>
+                    <ion-radio value=1></ion-radio>
                 </ion-item>  
+
+                <ion-item>
+                        <ion-label>3</ion-label>
+                        <ion-radio value=3></ion-radio>
+                    </ion-item>  
             </ion-list>
 
             <ion-item>

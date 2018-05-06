@@ -27,6 +27,10 @@ export class SearchResultsPage {
   tiempo: String;
   campus: String;
   categoria: String;
+  type: String;
+  input: String;
+  horaMin: string;
+  creditos: boolean;
   events$: Observable <any[]>;
   eventArray: Event[];
   user$: Observable <any[]>;
@@ -44,9 +48,12 @@ export class SearchResultsPage {
     this.campus = this.navParams.get('param1');
     this.tiempo = this.navParams.get('param2');
     this.categoria = this.navParams.get('param3');
+    this.type = this.navParams.get('param4');
+    this.input = this.navParams.get('param5').toLowerCase();
+    this.horaMin = this.navParams.get('param6');
+    this.creditos = this.navParams.get('param7');
     this.getUser();
     this.getEvents();
-    console.log (this.tiempo, this.campus, this.categoria);
   }
 
   getEvents(): void {
@@ -66,8 +73,13 @@ export class SearchResultsPage {
   getEventsArray(value: any) {
     this.eventArray = [];
     for (let v of value) {
-      if (this.checkDate(v.date)&&this.checkCampus(v.campus)&&this.checkCategory(v.categories)) this.eventArray.push(v);
-
+      if (this.type=='advanced') {
+        console.log (v.credits);
+        if (this.checkDate(v.date)&&this.checkCampus(v.campus)&&this.checkCategory(v.categories)&&this.checkCredits(v.credits)&&this.checkTime(v.date)) this.eventArray.push(v);
+      }
+      else {
+        if (this.checkDate(v.date)&&v.name.toLowerCase().indexOf(this.input)!=-1) this.eventArray.push(v);
+      }
     }
   }
 
@@ -98,6 +110,16 @@ export class SearchResultsPage {
      
     }
     this.user = this.userArray[0];
+  }
+
+  checkTime (value: string) {
+    if (this.getDate(this.horaMin).getHours() <this.getDate(value).getHours()) return true;
+    return false;
+  }
+
+  checkCredits (value: any) {
+    if (this.creditos==true&&(value==0||value=='0')) return false;
+    return true;
   }
 
   checkCampus (value: String) {

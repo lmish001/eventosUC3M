@@ -124,8 +124,5 @@ export class MisEventosPage {
   shareEvent(value: Event) {
   }
 
-  search() {
-    this.navCtrl.push(SearchPage);
-  }
 
 }

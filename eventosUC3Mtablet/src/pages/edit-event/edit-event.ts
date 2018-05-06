@@ -344,4 +344,9 @@ export class EditEventPage {
     return false;
   }
 
+  isChecked (value: number) {
+    if (this.event.credits==value) return true;
+    return false;
+  }
+
 }
