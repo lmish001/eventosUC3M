@@ -10,6 +10,7 @@ import { User } from '../../models/user.model';
 import { Categories } from '../../globalTypes';
 import { ToastController } from 'ionic-angular';
 import { EditEventPage } from '../edit-event/edit-event';
+import { SearchPage } from '../../search/search';
 
 @Component({
   selector: 'page-home',
@@ -52,16 +53,10 @@ export class HomePage {
   getEventsArray(value: any) {
     this.eventArray = [];
     for (let v of value) {
-      if (!this.eventArray) {
-        if (this.categorySelected(v.categories, this.user.categories)&&this.checkDate(v.date)) {
-          this.eventArray = [v];
-        }
-      }
-      else {
-        if (this.categorySelected(v.categories, this.user.categories)&&this.checkDate(v.date)) {
+        if (this.categorySelected(v.categories, this.user.categories)&&this.checkDate(v.date)&&v.campus==this.user.campus) {
           this.eventArray.push(v);
         }
-      } 
+       
     }
     
   }
@@ -140,6 +135,7 @@ export class HomePage {
   }
 
   search() {
+    this.navCtrl.push(SearchPage);
   }
 
   categorySelected (eventCategories: Categories[], userCategories: Categories []) {

@@ -45,6 +45,7 @@ export class MyApp {
     this.menu = menu;
     this.platform = platform;
     this.app = app;
+    //this.authService.addUser();
     this.initializeApp();
 
     events.subscribe('user:login', () => {

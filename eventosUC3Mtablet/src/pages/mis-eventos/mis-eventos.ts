@@ -8,6 +8,7 @@ import { EventService } from '../../services/event.service';
 import { EventDetailPage } from '../event-detail/event-detail';
 import { EditEventPage } from '../edit-event/edit-event';
 import { CreateEventPage } from '../create-event/create-event';
+import { SearchPage } from '../../search/search';
 
 /**
  * Generated class for the MisEventosPage page.
@@ -118,6 +119,13 @@ export class MisEventosPage {
     var curDate = new Date();
     if (this.getDate(value) < curDate) return false;
     return true;
+  }
+
+  shareEvent(value: Event) {
+  }
+
+  search() {
+    this.navCtrl.push(SearchPage);
   }
 
 }

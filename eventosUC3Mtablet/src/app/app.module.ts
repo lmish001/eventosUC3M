@@ -17,7 +17,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 //Services
 import {EventService} from '../services/event.service';
-import {NotificationService} from '../services/notification.service';
 import { LoginPage } from '../pages/login/login';
 import { AuthentificationService } from '../services/authentification.service';
 
@@ -32,6 +31,8 @@ import { CreateEventPage } from '../pages/create-event/create-event';
 
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { Dialogs } from '@ionic-native/dialogs';
+import { SearchPage } from '../search/search';
+import { SearchResultsPage } from '../search-results/search-results';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { Dialogs } from '@ionic-native/dialogs';
     LoginPage,
     MisEventosPage,
     EditEventPage,
-    CreateEventPage
+    CreateEventPage,
+    SearchPage,
+    SearchResultsPage
   ],
   imports: [
     BrowserModule,
@@ -70,14 +73,15 @@ import { Dialogs } from '@ionic-native/dialogs';
     LoginPage,
     MisEventosPage,
     EditEventPage,
-    CreateEventPage
+    CreateEventPage,
+    SearchPage,
+    SearchResultsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     EventService,
-    NotificationService,
     AuthentificationService,
     AngularFireAuth,
     AngularFireStorageModule,

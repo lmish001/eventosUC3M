@@ -7,6 +7,7 @@ import {EventDetailPage} from '../event-detail/event-detail';
 import { Observable } from 'rxjs/Observable';
 import { AuthentificationService } from '../../services/authentification.service';
 import { User } from '../../models/user.model';
+import { SearchPage } from '../../search/search';
 
 /**
  * Generated class for the FavoritesPage page.
@@ -118,6 +119,7 @@ export class FavoritesPage {
   }
 
   search() {
+    this.navCtrl.push(SearchPage);
   }
 
   loadEventDetail(value: Event) {

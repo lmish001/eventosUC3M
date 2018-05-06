@@ -39,6 +39,23 @@ export class AuthentificationService {
         return this.userRef.update(value.key, value);
     }
 
+    addUser() {
+    /* let user = {
+        name: "Lisa",
+        lastName: "Simpson",
+        lastName2: ' ',
+        email: 'test2@gmail.com',
+        campus: "Leganés",
+        categories: ['Historia', 'Informática', 'Deporte'],
+        avatar: 'http://3.bp.blogspot.com/_339JZmAslb0/TG3x4LbfGeI/AAAAAAAAABU/QATFhgxPMvA/s200/Lisa_Simpson150.jpg',
+        ntf_evCanc: true,
+        ntf_evMod: true,
+        ntf_evNew: false
+
+     }
+        this.userRef.push (user);*/
+    }
+
 
 
 
