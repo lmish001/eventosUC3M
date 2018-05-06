@@ -26,6 +26,9 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
+        <ion-card-content col-4 style="text-align: center">
+          <img style="margin-top: 85px;" src="assets/imgs/add.png" (click) = "addEvent()">
+        </ion-card-content>
       <ion-col col-4 *ngFor="let event of eventArray">
           <ion-card  class="advanced-background" >
               <ion-card-content>
@@ -33,7 +36,7 @@
                       <ion-card-title style="font-size: 16px; font-weight: bold;"> {{event.name}}</ion-card-title>
                     </div>
                     <div style="display:inline-block;width: 39%;">
-                          <button ion-button clear color="none" icon-only (click)="shareEvent(event)">
+                          <button ion-button clear color="none" icon-only (click)="editEvent(event)">
                               <img class="icon" src="assets/imgs/edit.png">
                           </button>
                     </div>
