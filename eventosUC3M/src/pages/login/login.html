@@ -5,14 +5,14 @@
   Ionic pages and navigation.
 -->
 
-<ion-header>
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
-</ion-header>
 
 
 <ion-content padding>
+	<h1>EVENTOS UC3M</h1>
+	<div class="cabeza">
+			<img class="logo" src="assets/imgs/logo.png">	
+			<img class="logo" src="assets/imgs/uc3m.png">
+	</div>
 
 	<form (ngSubmit)="login()" [formGroup]="loginForm">
 		<ion-list inset>
@@ -34,8 +34,13 @@
 			</div>
     </ion-list>
     
-			<div class="form-error">{{loginError}}</div>
-
-			<button ion-button full type="submit" [disabled]="!loginForm.valid">Log in</button>
-</form>
+		<div class="form-error">{{loginError}}</div>
+		<div class="d">
+			<button ion-button block type="submit" [disabled]="!loginForm.valid">Log in</button>
+		</div>	
+	</form>
+		<div class="text">
+			<p class="p">¿Has olvidado tu contraseña?</p>
+			*solo cuentas de la uc3m pueden inciar sesión.
+		</div>	
 </ion-content>
