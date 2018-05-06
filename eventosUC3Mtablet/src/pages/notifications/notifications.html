@@ -18,7 +18,7 @@
           <ion-card-content *ngIf="notification.type=='cancelado'" style="background-color:#ff8989" >
             <div (click)="loadEventDetail(notification)">
                 <p><i>{{getDate(notification.date).toLocaleDateString()}} {{getDate(notification.date).getHours()}}:{{getDate(notification.date).getMinutes()}} se ha cancelado el evento:</i></p>
-              <ion-card-title> {{notification.eventName}}</ion-card-title>
+              <ion-card-title class="ion-card-title0"> {{notification.eventName}}</ion-card-title>
               <img src={{notification.eventPhoto}}>
               <div class="columna">
                 <div class="card-subtitle"><img class="little_icon" src="assets/imgs/place.png">{{notification.eventPlace}}</div>
@@ -34,7 +34,7 @@
           <ion-card-content *ngIf="notification.type=='modificado'">
               <div (click)="loadEventDetail(notification)">
                 <p><i>{{getDate(notification.date).toLocaleDateString()}} {{getDate(notification.date).getHours()}}:{{getDate(notification.date).getMinutes()}} se ha modificado el evento:</i></p>
-                <ion-card-title> {{notification.eventName}}</ion-card-title>
+                <ion-card-title  class="ion-card-title0"> {{notification.eventName}}</ion-card-title>
                 <img src={{notification.eventPhoto}}>
                   <div class="columna">
                     <div class="card-subtitle"><img class="little_icon" src="assets/imgs/place.png">{{notification.eventPlace}}</div>

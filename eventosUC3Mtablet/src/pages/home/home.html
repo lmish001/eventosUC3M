@@ -16,22 +16,29 @@
 <ion-content padding>
     <ion-grid>
         <ion-row>
-            <ion-col col-3 *ngFor="let event of eventArray">
+            <ion-col col-4 *ngFor="let event of eventArray">
                     <ion-card  class="advanced-background" >
                             <ion-card-content> 
                                   <div class="card-title-only">
                                           <ion-card-title style="font-size: 16px; font-weight: bold;"> {{event.name}}</ion-card-title>
                                   </div>
                                   <div style="display:inline-block;width: 39%;">
-                                        <button ion-button clear color="none" icon-only (click)="shareEvent(event)">
-                                                <img class="icon" src="assets/imgs/share.png">
+                                        <div *ngIf="myEvent(event)==true">
+                                                <button ion-button clear color="none" icon-only (click)="shareEvent(event)">
+                                                        <img class="icon" src="assets/imgs/edit.png">
+                                                </button>
+                                        </div>
+                                        <div *ngIf="myEvent(event)==false">
+                                            <button ion-button clear color="none" icon-only (click)="shareEvent(event)">
+                                                    <img class="icon" src="assets/imgs/share.png">
                                             </button>
+                                        </div>
                                         <div *ngIf="isInFavorites(event)==false&&myEvent(event)==false">
                                             <button ion-button clear color="none" icon-only (click)="addFavorites(event)">
                                             <img class="icon" src="assets/imgs/fav_off.png">
                                             </button>
                                         </div>
-                                        <div *ngIf="isInFavorites(event)==true">
+                                        <div *ngIf="isInFavorites(event)==true&&myEvent(event)==false">
                                             <button ion-button clear color="none" icon-only (click)="deleteFavorites(event)">
                                             <img class="icon" src="assets/imgs/fav_on.png">
                                             </button>
@@ -47,11 +54,6 @@
                                           <div class="card-subtitle"><img class="little_icon" src="assets/imgs/date.png">{{getDate(event.date).toLocaleDateString()}}</div>
                                           <div class="card-subtitle"><img class="little_icon" src="assets/imgs/label.png">{{event.credits}} créditos</div>
                                       </div>
-                                  </div>
-                                  <div *ngIf="myEvent(event)==true">
-                                        <button ion-button block icon-only (click)="editEvent(event)">
-                                       editar evento
-                                        </button>
                                     </div>
                               </ion-card-content>
                       

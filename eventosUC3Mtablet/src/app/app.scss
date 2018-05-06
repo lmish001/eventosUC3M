@@ -22,12 +22,12 @@ $primary-color: #0b41be;
 $light-primary-color: #6fbaed;
 $secondary-color: #9775e1;
 
-ion-header{
+ion-footer{
     background: $light-dark-color;
 }
 .icon{
-    width: 28px;
-    height: 28px;  
+    width: 32px;
+    height: 32px;  
 }
 .little_icon{
     width: 18px;
@@ -57,4 +57,12 @@ ion-header{
 ::-webkit-scrollbar,
 *::-webkit-scrollbar {
   display: none;
+}
+
+ion-card{
+    height: 300px;
+}
+img{
+    height: 180px;
+    width: 180px;
 }

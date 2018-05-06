@@ -3,7 +3,13 @@
     display: inline-block;
 }
 .advanced-background0{
-    max-width: 60%;
+    max-width: 38%;
     margin-left: auto;
     margin-right: auto;
+    height: auto;
+}
+.ion-card-title0{
+    height: 65px;   
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

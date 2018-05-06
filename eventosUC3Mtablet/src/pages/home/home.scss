@@ -5,3 +5,8 @@ ion-title{
     text-align: center;
     margin-top: 0.75%;
 }
+ion-card-title{
+    height: 45px;   
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

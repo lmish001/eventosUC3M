@@ -26,10 +26,17 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-col col-3 *ngFor="let event of eventArray">
+      <ion-col col-4 *ngFor="let event of eventArray">
           <ion-card  class="advanced-background" >
               <ion-card-content>
-                    <ion-card-title style="font-size: 16px; font-weight: bold;"> {{event.name}}</ion-card-title>
+                    <div class="card-title-only">
+                      <ion-card-title style="font-size: 16px; font-weight: bold;"> {{event.name}}</ion-card-title>
+                    </div>
+                    <div style="display:inline-block;width: 39%;">
+                          <button ion-button clear color="none" icon-only (click)="shareEvent(event)">
+                              <img class="icon" src="assets/imgs/edit.png">
+                          </button>
+                    </div>
                     <div (click)="loadEventDetail(event)">
                         <img src={{event.photo}}>
                         <div class="columna">
@@ -41,10 +48,7 @@
                             <div class="card-subtitle"><img class="little_icon" src="assets/imgs/label.png">{{event.credits}} créditos</div>
                         </div>
                     </div>
-                    <button ion-button  block icon-only (click)="editEvent(event)">
-                        editar evento
-                         </button>
-                </ion-card-content>
+                  </ion-card-content>
             </ion-card> 
         </ion-col>
     </ion-row>

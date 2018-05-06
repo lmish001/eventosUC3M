@@ -24,7 +24,7 @@
     <div *ngIf="!hasInscriptions">Todavía no está registrado en ningún evento</div>
     <ion-grid>
         <ion-row>
-            <ion-col col-3 *ngFor="let event of eventArray">
+            <ion-col col-4 *ngFor="let event of eventArray">
                     <ion-card  class="advanced-background" >
                             <ion-card-content>
                                   <ion-card-title style="font-size: 16px; font-weight: bold;"> {{event.name}}</ion-card-title>
