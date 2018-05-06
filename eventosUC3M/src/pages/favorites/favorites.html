@@ -9,19 +9,19 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <button ion-button color="light" icon-only (click)="search()">
+    <button ion-button clear color="light" icon-only (click)="search()">
         <img class="icon" src="assets/imgs/search.png">
       </button>
-    <button ion-button  color="light" icon-only (click)="loadNotifications()">
+    <button ion-button clear color="light" icon-only (click)="loadNotifications()">
         <img class="icon" src="assets/imgs/notify.png">
     </button>
-    <ion-title><h1>Estoy interesado</h1></ion-title>
+    <ion-title>Estoy interesado</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-    <div *ngIf="hasFavorites==false">Todavía no tiene ningún evento guardado en favoritos</div>
+    <div *ngIf="hasFavorites==false">Todavía no tiene ningún evento guardado en tus intereses :(</div>
     <ion-card *ngFor="let event of eventArray" class="advanced-background" >
         <ion-card-content>
             <div>
@@ -29,10 +29,10 @@
                     <ion-card-title style="font-size: 16px; font-weight: bold;" (click)="loadEventDetail(event)"> {{event.name}}</ion-card-title>
                 </div>
                 <div style="display:inline-block;width: 39%;">
-                    <button ion-button color="none" icon-only (click)="shareEvent(event)">
+                    <button ion-button clear color="none" icon-only (click)="shareEvent(event)">
                             <img class="icon" src="assets/imgs/share.png">
                         </button>
-                        <button ion-button  color="none" icon-only (click)="deleteFavorites(event)">
+                        <button ion-button clear color="none" icon-only (click)="deleteFavorites(event)">
                         <img class="icon" src="assets/imgs/fav_on.png">
                         </button>
                     

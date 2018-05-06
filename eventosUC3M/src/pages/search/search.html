@@ -18,49 +18,48 @@
 
     <ion-searchbar (ionInput)="getInput($event)"></ion-searchbar>
     <button ion-button type="submit" (click)="submitBasicSearchForm()" block>Buscar evento</button>
-
-    <p\n>Búsqueda Avanzada</p>
-    <p>Quiero encontrar un evento en:</p>
-    <form [formGroup]="searchForm">
-        <ion-item>
-            <ion-label></ion-label>
-            <ion-select formControlName="campus" placeholder="Todos los campus" text-center>
-                <ion-option value="todos_campus">Todos los campus</ion-option>
-                <ion-option>Leganés</ion-option>
-                <ion-option>Getafe</ion-option>
-                <ion-option>Colmenarejo</ion-option>
-                <ion-option>Puerta de Toledo</ion-option>
-            </ion-select>
-          </ion-item>
-
-          <ion-item>
-              <ion-label></ion-label>
-              <ion-select formControlName="tiempo" placeholder="Caulquier dia">
-                  <ion-option value="todos_dias">Culaquier dia</ion-option>
-                  <ion-option value="semana">Durante la próxima semana</ion-option>
-                  <ion-option value="mes">Durante el próximo mes</ion-option>
-              </ion-select>
-            </ion-item>
-
-            <ion-item >
-                <ion-label></ion-label>
-                <ion-select formControlName="categoria" placeholder="Caulquier categoria">
-                    <ion-option value="todos_catg">Cualquier categoria</ion-option>
-                    <ion-option *ngFor="let category of categories">{{category}}</ion-option>
+    <ion-item></ion-item>
+        <h1>Búsqueda Avanzada</h1>
+        <p>Quiero encontrar un evento en:</p>
+        <form [formGroup]="searchForm">
+            <ion-item>
+                <ion-select block formControlName="campus" placeholder="Todos los campus">
+                    <ion-option value="todos_campus">Todos los campus</ion-option>
+                    <ion-option value="Leganés">Leganés</ion-option>
+                    <ion-option value="Getafe">Getafe</ion-option>
+                    <ion-option value="Colmenarejo">Colmenarejo</ion-option>
+                    <ion-option value="Puerta de Toledo">Puerta de Toledo</ion-option>
                 </ion-select>
             </ion-item>
 
             <ion-item>
-                    <ion-label>A partir de las</ion-label>
-                    <ion-datetime displayFormat="HH a" pickerFormat= "HH:mm" hourValues="08,09,10,11,12,13,14,15,16,17,18,19,20" minuteValues="00,30" formControlName="horaMin"></ion-datetime>
-            </ion-item>
+                
+                <ion-select formControlName="tiempo" placeholder="Caulquier dia">
+                    <ion-option value="todos_dias">Culaquier dia</ion-option>
+                    <ion-option value="semana">Durante la próxima semana</ion-option>
+                    <ion-option value="mes">Durante el próximo mes</ion-option>
+                </ion-select>
+                </ion-item>
 
-            <ion-item>
-                <ion-label>Solo eventos con ECTS</ion-label>
-                <ion-toggle formControlName="creditos"></ion-toggle>
-            </ion-item>
+                <ion-item >
+                    
+                    <ion-select formControlName="categoria" placeholder="Caulquier categoria">
+                        <ion-option value="todos_catg">Cualquier categoria</ion-option>
+                        <ion-option *ngFor="let category of categories">{{category}}</ion-option>
+                    </ion-select>
+                </ion-item>
 
-        <button ion-button type="submit" (click) = "submitSearchForm()" block>Busqueda Avanzada</button>
-      </form>
-  
+                <ion-item>
+                        <ion-label>A partir de las</ion-label>
+                        <ion-datetime displayFormat="HH a" pickerFormat= "HH:mm" hourValues="08,09,10,11,12,13,14,15,16,17,18,19,20" minuteValues="00,30" formControlName="horaMin"></ion-datetime>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Solo eventos con ECTS</ion-label>
+                    <ion-toggle formControlName="creditos"></ion-toggle>
+                </ion-item>
+
+            <button ion-button type="submit" (click) = "submitSearchForm()" block>Busqueda Avanzada</button>
+        </form>
+    
 </ion-content>

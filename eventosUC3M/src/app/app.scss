@@ -22,9 +22,15 @@ $primary-color: #0b41be;
 $light-primary-color: #6fbaed;
 $secondary-color: #9775e1;
 
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+}
+
 ion-header{
     background: $light-dark-color;
 }
+
 .icon{
     width: 28px;
     height: 28px;  
@@ -53,3 +59,4 @@ ion-header{
 .usuario{
    font-size: 12px;
 }
+
