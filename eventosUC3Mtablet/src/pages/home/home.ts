@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Events } from 'ionic-angular';
 import { EventService } from '../../services/event.service';
 import { Event } from '../../models/event.model';
 import { EventDetailPage } from '../event-detail/event-detail';
@@ -30,7 +30,6 @@ export class HomePage {
     this.getUser();
     this.getEvents();
   }
-
 
   getDate(value: string): Date {
     return new Date (value);

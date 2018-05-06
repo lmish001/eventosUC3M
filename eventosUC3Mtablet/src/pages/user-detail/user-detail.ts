@@ -1,5 +1,5 @@
 import {Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, MenuController, Events } from 'ionic-angular';
 import {User} from '../../models/user.model';
 import {USER} from '../../mock-user';
 import { Observable } from 'rxjs/Observable';
@@ -26,7 +26,7 @@ export class UserDetailPage {
   categories: Categories [] =  ['Informática' ,'Economía','Literatura','Ciencia','Software','Ciberseguridad','Historia','Música','Deporte','Teatro']
   private menu: MenuController;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthentificationService, menu: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthentificationService, menu: MenuController, public events: Events) {
     this.menu = menu;
   }
 
@@ -35,8 +35,9 @@ export class UserDetailPage {
     this.getUser();
   }
 
-  ionViewWillLeave() {
-    this.auth.updateUser(this.CurUser);
+  async ionViewCanLeave() {
+   await this.auth.updateUser(this.CurUser);
+   return true;
   }
 
   getUser(): void {
@@ -86,6 +87,7 @@ export class UserDetailPage {
       }
     }
     this.CurUser.categories = userCategories;
+   // this.auth.updateUser(this.CurUser);
     
   }
 
