@@ -7,6 +7,7 @@ import {NotificationsPage} from '../notifications/notifications';
 import { Observable } from 'rxjs/Observable';
 import { AuthentificationService } from '../../services/authentification.service';
 import { User } from '../../models/user.model';
+import { SearchPage } from '../search/search';
 
 /**
  * Generated class for the InscriptionsPage page.
@@ -142,6 +143,7 @@ export class InscriptionsPage {
   }
 
   search() {
+    this.navCtrl.push(SearchPage);
   }
 
 

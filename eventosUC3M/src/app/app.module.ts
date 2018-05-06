@@ -25,6 +25,8 @@ import { FIREBASE_CONFIG } from './firebase.credentials';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { NgxErrorsModule } from '@ultimate/ngxerrors';
+import { SearchPage } from '../pages/search/search';
+import { SearchResultsPage } from '../pages/search-results/search-results';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors';
     EventDetailPage,
     UserDetailPage,
     ConfigNotificationsPage,
-    LoginPage
+    LoginPage,
+    SearchPage,
+    SearchResultsPage
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,9 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors';
     EventDetailPage,
     UserDetailPage,
     ConfigNotificationsPage,
-    LoginPage
+    LoginPage,
+    SearchPage,
+    SearchResultsPage
   ],
   providers: [
     StatusBar,

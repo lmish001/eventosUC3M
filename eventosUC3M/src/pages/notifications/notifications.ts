@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {NotificationService} from '../../services/notification.service';
 import {EventDetailPage} from '../event-detail/event-detail';
 import { ToastController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
@@ -33,7 +32,7 @@ export class NotificationsPage {
   notification: Notification;
   notificationArray: Notification[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private notificationService: NotificationService, public toastCtrl: ToastController, private eventService: EventService, private auth: AuthentificationService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private eventService: EventService, private auth: AuthentificationService) {
   }
 
   ionViewDidLoad() {

@@ -1,5 +1,4 @@
 import {Event} from '../models/event.model';
-import {USER} from '../mock-user';
 import {User} from '../models/user.model';
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
@@ -16,6 +15,7 @@ export class EventService {
     
     private list;
     user: firebase.User;
+
 
 
 
@@ -62,63 +62,6 @@ export class EventService {
     getNotifications (){
         return this.notificationsRef;
     }
-
-   /* isInFavorites(value: Event) {
-        return this.db.list('/Users', ref => ref.orderByChild('favorites').equalTo(value.name));
-    }
-
-    addFavorites (value: Event) {
-        this.eventsRef.update(value.key, value);
-    }*/
-
-
- 
-
-
-
-
-
-    /*getInscriptions(): Event[] {
-        if(USER.inscriptions[0]==null){
-                return null;
-        }
-         return USER.inscriptions;
-    }
-
-    isRegistered(value: Event): boolean {
-        if(USER.inscriptions.indexOf(value)==-1){
-                return false;
-        }
-        return true;       
-    }
-
-    getFavorites(): Event[] {
-        if(USER.favorites[0]==null){
-            return null;
-        }
-        return USER.favorites;
-    }
-*/
-
-
     
 
-
-
-/*
-    addInscriptions (value: Event): number {
-        if(USER.inscriptions[0]==null){
-            USER.inscriptions = [value];
-            return 1;
-        }
-        if (USER.inscriptions.indexOf(value)==-1) {
-            USER.inscriptions.push(value);
-            return 1;
-        }    
-        return 0;  
-    }
-
-    removeInscriptions (value: Event) {
-        USER.inscriptions.splice(USER.inscriptions.indexOf(value), 1);
-    }*/
 }

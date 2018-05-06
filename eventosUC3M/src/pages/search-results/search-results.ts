@@ -1,42 +1,51 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Campus, Categories } from '../../globalTypes';
 import { EventService } from '../../services/event.service';
 import { Event } from '../../models/event.model';
 import { EventDetailPage } from '../event-detail/event-detail';
-import { NotificationsPage } from '../notifications/notifications'; 
 import { Observable } from 'rxjs/Observable';
 import { AuthentificationService } from '../../services/authentification.service';
 import { User } from '../../models/user.model';
-import { Categories } from '../../globalTypes';
 import { ToastController } from 'ionic-angular';
-import { SearchPage } from '../search/search';
 
+/**
+ * Generated class for the SearchResultsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-search-results',
+  templateUrl: 'search-results.html',
 })
-export class HomePage {
+export class SearchResultsPage {
+
+  tiempo: String;
+  campus: String;
+  categoria: String;
   events$: Observable <any[]>;
+  eventArray: Event[];
   user$: Observable <any[]>;
   user: User;
   userArray: User[];
-  eventArray: Event[];
-  categories: Categories [] =  ['Informática' ,'Economía','Literatura','Ciencia','Software','Ciberseguridad','Historia','Música','Deporte','Teatro']
-  constructor(public navCtrl: NavController, private eventService: EventService, private auth: AuthentificationService, public toastCtrl: ToastController) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,  private eventService: EventService, private auth: AuthentificationService, public toastCtrl: ToastController) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SearchResultsPage');
   }
 
   ngOnInit() {
+    this.campus = this.navParams.get('param1');
+    this.tiempo = this.navParams.get('param2');
+    this.categoria = this.navParams.get('param3');
     this.getUser();
     this.getEvents();
-
-  }
-
-  onViewWillLeave() {
-
-  }
-
-  getDate(value: string): Date {
-    return new Date (value);
+    console.log (this.tiempo, this.campus, this.categoria);
   }
 
   getEvents(): void {
@@ -56,16 +65,10 @@ export class HomePage {
   getEventsArray(value: any) {
     this.eventArray = [];
     for (let v of value) {
-        if (this.categorySelected(v.categories, this.user.categories)&&this.checkDate(v.date)&&v.campus==this.user.campus) {
-          this.eventArray.push(v);
-        }
+      if (this.checkDate(v.date)&&this.checkCampus(v.campus)&&this.checkCategory(v.categories)) this.eventArray.push(v);
+
     }
   }
-
-  /*addEvent(value: Event) {
-    this.eventService.addEvent(value);
-    this.events = this.eventService.getEvents();
-  }*/
 
   getUser() {
     this.user$ = this.auth.getCurrentUser().snapshotChanges() //retorna los cambios en la DB (key and value)
@@ -96,12 +99,55 @@ export class HomePage {
     this.user = this.userArray[0];
   }
 
-  loadEventDetail(value: Event) {
-    this.navCtrl.push(EventDetailPage, {param1: value, param2: this.user});
+  checkCampus (value: String) {
+    console.log(this.campus);
+    if (this.campus == "todos_campus") return true;
+    if (this.campus==value) return true;
+    console.log('checkCampus false');
+    return false
   }
 
-  loadNotifications() {
-    this.navCtrl.push(NotificationsPage);
+  checkCategory (value: String[]) {
+    if (this.categoria == "todos_catg") return true;
+    for (let v of value) {
+      if (v == this.categoria) return true;
+    }
+    console.log('checkCat false');
+    return false;
+  }
+
+  getDate(value: string): Date {
+    return new Date (value);
+  }
+
+  checkDate (value: string) {
+    var curDate = new Date();
+    if (this.tiempo=='todos_dias') {
+      console.log('todo_dias');
+      if (this.getDate(value) < curDate) return false;
+    }
+    if (this.tiempo=='semana') {
+      console.log('semana');
+      if (this.getDate(value) < curDate || this.getDate(value)>this.nextWeek()) return false;
+    }
+    if (this.tiempo=='mes') {
+      console.log('mes');
+      if (this.getDate(value) < curDate || this.getDate(value)>this.nextMonth()) return false;
+    }
+    console.log('checkDate true');
+    return true;
+  }
+
+  nextWeek(){
+    var today = new Date();
+    var nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+    return nextweek;
+  }
+
+  nextMonth(){
+    var today = new Date();
+    var nextmonth = new Date(today.getFullYear(), today.getMonth()+1, today.getDate());
+    return nextmonth;
   }
 
   addFavorites(value: Event) {
@@ -131,30 +177,6 @@ export class HomePage {
       return true;
   }
 
-  shareEvent(value: Event) {
-
-  }
-
-  search() {
-    this.navCtrl.push(SearchPage);
-  }
-
-  categorySelected (eventCategories: Categories[], userCategories: Categories []) {
-    if (!userCategories) return true; //Si el usuario no ha marcado intereses, se les enseña todos los eventos
-
-    for (let i in userCategories) {
-      if (eventCategories.indexOf(userCategories[i])!=-1) return true;
-    }
-
-    return false;
-  }
-
-  checkDate (value: string) {
-    var curDate = new Date();
-    if (this.getDate(value) < curDate) return false;
-    return true;
-  }
-
   presentToastAdd() {
     let toast = this.toastCtrl.create({
       message: 'Añadido a "Estoy intresado"!',
@@ -164,5 +186,12 @@ export class HomePage {
     toast.present();
   }
 
+  shareEvent(value: Event) {
+
+  }
+
+  loadEventDetail(value: Event) {
+    this.navCtrl.push(EventDetailPage, {param1: value, param2: this.user});
+  }
 
 }
