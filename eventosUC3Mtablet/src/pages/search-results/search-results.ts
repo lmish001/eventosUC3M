@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Campus, Categories } from '../globalTypes'
-import { EventService } from '../services/event.service';
-import { Event } from '../models/event.model';
-import { EventDetailPage } from '../pages/event-detail/event-detail';
+import { Campus, Categories } from '../../globalTypes'
+import { EventService } from '../../services/event.service';
+import { Event } from '../../models/event.model';
+import { EventDetailPage } from '../event-detail/event-detail';
 import { Observable } from 'rxjs/Observable';
-import { AuthentificationService } from '../services/authentification.service';
-import { User } from '../models/user.model';
+import { AuthentificationService } from '../../services/authentification.service';
+import { User } from '../../models/user.model';
 import { ToastController } from 'ionic-angular';
-import { EditEventPage } from '../pages/edit-event/edit-event';
+import { EditEventPage } from '../edit-event/edit-event';
 
 /**
  * Generated class for the SearchResultsPage page.

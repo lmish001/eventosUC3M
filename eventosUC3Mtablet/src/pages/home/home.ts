@@ -10,7 +10,7 @@ import { User } from '../../models/user.model';
 import { Categories } from '../../globalTypes';
 import { ToastController } from 'ionic-angular';
 import { EditEventPage } from '../edit-event/edit-event';
-import { SearchPage } from '../../search/search';
+import { SearchPage } from '../search/search';
 
 @Component({
   selector: 'page-home',

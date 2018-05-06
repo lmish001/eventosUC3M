@@ -8,7 +8,7 @@ import { EventService } from '../../services/event.service';
 import { EventDetailPage } from '../event-detail/event-detail';
 import { EditEventPage } from '../edit-event/edit-event';
 import { CreateEventPage } from '../create-event/create-event';
-import { SearchPage } from '../../search/search';
+import { SearchPage } from '../search/search';
 
 /**
  * Generated class for the MisEventosPage page.

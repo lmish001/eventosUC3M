@@ -31,8 +31,8 @@ import { CreateEventPage } from '../pages/create-event/create-event';
 
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { Dialogs } from '@ionic-native/dialogs';
-import { SearchPage } from '../search/search';
-import { SearchResultsPage } from '../search-results/search-results';
+import { SearchPage } from '../pages/search/search';
+import { SearchResultsPage } from '../pages/search-results/search-results';
 
 @NgModule({
   declarations: [

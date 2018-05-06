@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Categories, Campus } from '../globalTypes';
-import { Search } from '../models/search.model';
+import { Categories, Campus } from '../../globalTypes';
+import { Search } from '../../models/search.model';
 import { SearchResultsPage } from '../search-results/search-results';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 
