@@ -39,7 +39,8 @@
         Página web: <p style="color:blue">{{event.webpage}}</p><div class="card-subtitle"><img class="icon" src="assets/imgs/web.png"></div>
     </div>
     
-    <p>Categorias: {{event.categories}}</p>
+    <p>Categorias: </p>
+    <div class="sep" *ngFor="let catg of event.categories"><h3>{{catg}}</h3> &nbsp;</div>
 
     <div #map id="map"></div> 
     
