@@ -19,10 +19,10 @@
 
 <form [formGroup]="eventForm">
         <ion-item>
-            <ion-input type="text" placeholder="Nombre evento" formControlName="nombreEvento"></ion-input>
+            <ion-input type="text" placeholder="Nombre evento*" formControlName="nombreEvento"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-textarea type="text" placeholder="Descripción" formControlName="descripcion"></ion-textarea>
+            <ion-textarea type="text" placeholder="Descripción*" formControlName="descripcion"></ion-textarea>
         </ion-item>
 
         <h4>No se podrá cambiar la foto una vez que está publicado el evento</h4>
@@ -36,9 +36,9 @@
         <section class="spacing-container">   
             <label for="file">File:</label>    
             <input type="file" (change)="previewFile($event)" accept=".png,.jpg," />    
-        </section> 
-            <button style="float: left" (click)="uploadFile()" [disabled]="!(previewURL | async)||(uploadURL | async)">Upload</button>           
-            <button style="float: left" (click)="deleteUpload()" [disabled]="!(uploadURL | async)"> Delete </button>   
+        </section>          
+            <button  ion-button small style="float: left" color="danger" (click)="deleteUpload()" [disabled]="!(uploadURL | async)"> Delete </button>
+            <button  ion-button small style="float: left" color="primary" (click)="uploadFile()" [disabled]="!(previewURL | async)||(uploadURL | async)">Upload</button>   
             <div *ngIf="uploadURL | async; let uploadSrc">    
                     {{setImage(uploadSrc)}}    
                     </div>
@@ -46,13 +46,13 @@
                     <img [src]="previewSrc" />   
                     </div>  
             <ion-item>
-                <ion-label>Fecha y hora del evento</ion-label>
+                <ion-label>Fecha y hora del evento*</ion-label>
                 <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [min] = "minDate" hourValues="08,09,10,11,12,13,14,15,16,17,18,19,20,21 " minuteValues="00, 15, 30, 45" formControlName="fecha"></ion-datetime>
             </ion-item>
             
             <ion-item>
                 <ion-label>Lugar del evento</ion-label>
-                <ion-select formControlName="campus" placeholder="Seleccione campus">
+                <ion-select formControlName="campus" placeholder="Seleccione campus*">
                 <ion-option>Leganés</ion-option>
                 <ion-option>Getafe</ion-option>
                 <ion-option>Colmenarejo</ion-option>
@@ -61,41 +61,39 @@
             </ion-item>
 
             <ion-item>
-                <ion-input type="text" placeholder="Aula" formControlName="aula"></ion-input>
+                <ion-input type="text" placeholder="Aula*" formControlName="aula"></ion-input>
             </ion-item>
+            <h2>Créditos*</h2> 
+            <ion-list radio-group formControlName="creditos" style="width: 10%">
 
-            <ion-list radio-group formControlName="creditos">
-                <ion-list-header>
-                    Créditos 
-                </ion-list-header>
                 
                 <ion-item>
-                    <ion-label>0</ion-label>
                     <ion-radio checked="true" value=0></ion-radio>
+                    <ion-label>0</ion-label>
                 </ion-item>
                 
                 <ion-item>
-                    <ion-label>1</ion-label>
                     <ion-radio value=1></ion-radio>
+                    <ion-label>1</ion-label>
                 </ion-item>  
 
                 <ion-item>
-                        <ion-label>3</ion-label>
                         <ion-radio value=3></ion-radio>
-                    </ion-item>  
+                        <ion-label>3</ion-label>
+                </ion-item>  
             </ion-list>
 
             <ion-item>
-                <ion-input type="text" placeholder="Organizador del evento" formControlName="organizador"></ion-input>
+                <ion-input type="text" placeholder="Organizador del evento*" formControlName="organizador"></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-input type="text" placeholder="Email de contacto" formControlName="contacto"></ion-input>
+                <ion-input type="text" placeholder="Email de contacto*" formControlName="contacto"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input type="text" placeholder="Página web" formControlName="paginaWeb"></ion-input>
+                <ion-input type="text" placeholder="Página web*" formControlName="paginaWeb"></ion-input>
             </ion-item>
-            <h4>Se debe marcar al menos 1 categoría</h4>
+            <h4>Se debe marcar al menos 1 categoría*</h4>
             <div *ngFor="let category of categories">
        
                 <ion-item>
