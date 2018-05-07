@@ -22,6 +22,7 @@ declare var google: any;
 export class EventDetailPage {
   event: Event;
   user: User;
+
   //isRegistered: boolean;
   //isFavorite: boolean;
   @ViewChild('map') mapElement: ElementRef;
@@ -32,6 +33,7 @@ export class EventDetailPage {
   ngOnInit() {
     this.event = this.navParams.get('param1');
     this.user = this.navParams.get('param2');
+
     //this.isRegistered = this.eventService.isRegistered(this.event);
     //this.isFavorite = this.eventService.isInFavorites(this.event);
   }
@@ -173,7 +175,7 @@ export class EventDetailPage {
   }
 
   editEvent () {
-    this.navCtrl.push(EditEventPage, {param1: this.event, param2: this.user} );
+    this.navCtrl.push(EditEventPage, {param1: this.event, param2: this.user, param3: 'evDetail'} );
   }
 
 

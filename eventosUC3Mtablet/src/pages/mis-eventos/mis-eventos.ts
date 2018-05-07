@@ -8,7 +8,6 @@ import { EventService } from '../../services/event.service';
 import { EventDetailPage } from '../event-detail/event-detail';
 import { EditEventPage } from '../edit-event/edit-event';
 import { CreateEventPage } from '../create-event/create-event';
-import { SearchPage } from '../search/search';
 
 /**
  * Generated class for the MisEventosPage page.
@@ -104,7 +103,7 @@ export class MisEventosPage {
   }
 
   editEvent (value: Event) {
-    this.navCtrl.push(EditEventPage, {param1: value, param2: this.user} );
+    this.navCtrl.push(EditEventPage, {param1: value, param2: this.user, param3: 'misEventos'} );
   }
 
   addEvent() {

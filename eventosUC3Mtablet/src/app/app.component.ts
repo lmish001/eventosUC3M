@@ -1,19 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, ViewController, Events, MenuController, App } from 'ionic-angular';
+import { Nav, Platform, Events, MenuController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { AngularFireStorage } from 'angularfire2/storage';
 import {User} from '../models/user.model';
-import {USER} from '../mock-user';
 
 //Pages
 import { HomePage } from '../pages/home/home';
-//import { ListPage } from '../pages/list/list';
 import {InscriptionsPage} from '../pages/inscriptions/inscriptions';
 import {FavoritesPage} from '../pages/favorites/favorites';
 import {ConfigNotificationsPage} from '../pages/config-notifications/config-notifications';
-//import {NotificationsPage} from '../pages/notifications/notifications';
-//import {EventDetailPage} from '../pages/event-detail/event-detail';
 import {UserDetailPage} from '../pages/user-detail/user-detail';
 import { LoginPage } from '../pages/login/login';
 import { AuthentificationService } from '../services/authentification.service';
@@ -39,13 +34,11 @@ export class MyApp {
   userConfig: Array<{title: string, component: any}>;
   private menu: MenuController;
   private platform;
-  private app;
 
-  constructor(platform: Platform, menu: MenuController, app: App, public statusBar: StatusBar, public splashScreen: SplashScreen, private authService: AuthentificationService, public events: Events) {
+
+  constructor(platform: Platform, menu: MenuController,  public statusBar: StatusBar, public splashScreen: SplashScreen, private authService: AuthentificationService, public events: Events) {
     this.menu = menu;
     this.platform = platform;
-    this.app = app;
-    //this.authService.addUser();
     this.initializeApp();
 
     events.subscribe('user:login', () => {

@@ -22,17 +22,17 @@
       <!--Add [(ngModel)] later -->
         <ion-item>
           <ion-label>Eventos cancelados</ion-label>
-          <ion-toggle checked="user.ntf_evCanc" [(ngModel)] = "user.ntf_evCanc"></ion-toggle>
+          <ion-toggle checked="true" [(ngModel)] = "user.ntf_evCanc"></ion-toggle>
         </ion-item>
       
         <ion-item>
           <ion-label>Eventos modificados</ion-label>
-          <ion-toggle checked="user.ntf_evMod" [(ngModel)] = "user.ntf_evMod"></ion-toggle>
+          <ion-toggle checked="true" [(ngModel)] = "user.ntf_evMod"></ion-toggle>
         </ion-item>
       
         <ion-item>
           <ion-label>Eventos nuevos basados en mis preferencias</ion-label>
-          <ion-toggle checked="user.ntf_evNew" [(ngModel)] = "user.ntf_evNew"></ion-toggle>
+          <ion-toggle checked="false" [(ngModel)] = "user.ntf_evNew"></ion-toggle>
         </ion-item>
       
       </ion-list>

@@ -1,5 +1,3 @@
-import {Categories, Campus} from '../globalTypes'
-
 export interface Search {
     type: String,
     input: String,

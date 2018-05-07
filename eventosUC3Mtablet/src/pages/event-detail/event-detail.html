@@ -46,19 +46,22 @@
 
     <div #map id="map"></div> 
     
-    <div class="columna" *ngIf="isRegistered()==true">
+
+    
+    <div *ngIf="isRegistered()==true">
         <button ion-button block color="danger" (click)="cancelRegistration()">Cancelar inscripción</button>
     </div>
-    <div class="columna" *ngIf="isRegistered()==false&&myEvent()==false">
+    <div *ngIf="isRegistered()==false&&myEvent()==false">
         <button ion-button block color="secondary" (click)="register()">inscribirse</button>
     </div>
-    <div class="columna" *ngIf="myEvent()==true">
-            <button ion-button block color="primary" (click)="editEvent()">Editar evento</button>
+    <div  *ngIf="myEvent()==true">
+            <button ion-button block color="secondary" (click)="editEvent()">Editar evento</button>
     </div>
     <div class="columna" >
-        <button ion-button block color="secondary">Exportar al Calendario</button>
+        <button ion-button small block color="primary">Exportar al Calendario</button>
     </div>
-    <div style="display:inline-block;width: 100%;">
+
+    <div style="display:inline-block;width: 49%;">
         <div *ngIf="myEvent()==false">
             <button ion-button clear color="none" icon-only (click)="shareEvent(event)">
                 <img class="icon" src="assets/imgs/share.png">

@@ -79,8 +79,13 @@
             <ion-checkbox (ionChange)= "onChange(category)" [checked]="categorySelected(category)"></ion-checkbox>
             </ion-item>
         </div>
-        <button ion-button type="submit" [disabled]="!eventForm.valid||!formChanged()" (click)="updateEvent()" >Guardar Cambios</button>
-        <button ion-button (click)="deleteEvent()" >Cancelar evento</button>
+        <div class="columna">
+            <button ion-button block color="danger"(click)="deleteEvent()">Cancelar evento</button>
+        </div>
+        <div class="columna">
+            <button ion-button block type="submit" [disabled]="!eventForm.valid||!formChanged()" (click)="updateEvent()" >Guardar Cambios</button>
+        </div>
+        
 </form>
 
 </ion-content>

@@ -1,5 +1,4 @@
 import {Categories, Campus} from '../globalTypes'
-import {Event} from '../models/event.model';
 
 export interface User {
     key?: string;

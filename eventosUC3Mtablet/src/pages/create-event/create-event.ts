@@ -1,19 +1,16 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { fromEvent } from 'rxjs/observable/fromEvent';
-import { from } from 'rxjs/observable/from';
 import { of } from 'rxjs/observable/of';
-import { map, filter, tap, take } from 'rxjs/operators';
-import firebase from '@firebase/app';
+import { map, tap, take } from 'rxjs/operators';
 import 'firebase/storage';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireStorage, AngularFireUploadTask, AngularFireStorageReference } from 'angularfire2/storage';
 import { User } from '../../models/user.model';
-import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Categories } from '../../globalTypes';
 import { Event } from '../../models/event.model';
 import { EventService } from '../../services/event.service';
-import { MisEventosPage } from '../mis-eventos/mis-eventos';
 import { ToastController } from 'ionic-angular';
 
 /**

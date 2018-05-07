@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Events } from 'ionic-angular';
+import { NavController} from 'ionic-angular';
 import { EventService } from '../../services/event.service';
 import { Event } from '../../models/event.model';
 import { EventDetailPage } from '../event-detail/event-detail';
@@ -168,7 +168,7 @@ export class HomePage {
   }
 
   editEvent (value: Event) {
-    this.navCtrl.push(EditEventPage, {param1: value, param2: this.user} );
+    this.navCtrl.push(EditEventPage, {param1: value, param2: this.user, param3: 'home'} );
   }
 
 

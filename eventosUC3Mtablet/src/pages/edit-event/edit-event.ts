@@ -1,21 +1,19 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { fromEvent } from 'rxjs/observable/fromEvent';
-import { from } from 'rxjs/observable/from';
 import { of } from 'rxjs/observable/of';
-import { map, filter, tap, take } from 'rxjs/operators';
-import firebase from '@firebase/app';
+import { map, tap, take } from 'rxjs/operators';
 import 'firebase/storage';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireStorage, AngularFireUploadTask, AngularFireStorageReference } from 'angularfire2/storage';
 import { User } from '../../models/user.model';
-import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Categories } from '../../globalTypes';
 import { Event } from '../../models/event.model';
 import { EventService } from '../../services/event.service';
-import { MisEventosPage } from '../mis-eventos/mis-eventos';
 import { ToastController } from 'ionic-angular';
 import { Notification } from '../../models/notification.model';
+import { HomePage } from '../home/home';
 
 
 /**
@@ -32,6 +30,7 @@ import { Notification } from '../../models/notification.model';
 })
 export class EditEventPage {
 
+  prevPage: String;
   previewURL: Observable<any>;
   file: Blob;
   ref: AngularFireStorageReference;
@@ -51,11 +50,14 @@ export class EditEventPage {
   typeLeave: string = 'back';
   categMarcadas: Categories[] = [];
   categories: Categories [] =  ['Informática' ,'Economía','Literatura','Ciencia','Software','Ciberseguridad','Historia','Música','Deporte','Teatro'];
+  notifications$:  Observable<any>;
+  notificationArray: Notification[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private afStorage: AngularFireStorage, public formB: FormBuilder, private eventService: EventService, public toastCtrl: ToastController, private alertCtrl: AlertController) {
     this.minDate = new Date().toISOString();
     this.event = this.navParams.get('param1');
     this.user = this.navParams.get('param2');
+    this.prevPage = this.navParams.get('param3');
     this.eventPhoto = this.event.photo;
     this.eventForm = formB.group ({
       nombreEvento: [this.event.name, Validators.compose([Validators.required, Validators.maxLength(80)])],
@@ -73,7 +75,7 @@ export class EditEventPage {
   }
 
   ngOnInit() {
-
+    this.getNotifications();
   }
 
   formChanged() {
@@ -232,7 +234,7 @@ export class EditEventPage {
  async deleteEvent() {
   this.typeLeave='delete';
   const shouldDelete = await this.confirmDelete();
-    if (shouldDelete) {
+  if (shouldDelete) {
     this.notification = {
       eventKey: this.event.key,
       publicado_por: this.user.email,
@@ -245,20 +247,45 @@ export class EditEventPage {
       type: 'cancelado',
       date: this.curDate.toString()
     }
-    this.eventService.addNotification(this.notification);
+
+    this.deleteNotifications();
     this.eventService.deleteEvent(this.event);
+    this.eventService.addNotification(this.notification);
     this.presentToastDelete();
     
-    this.navCtrl.pop();
+    if (this.prevPage=='evDetail') {
+      this.navCtrl.setRoot(HomePage);
+    }
+    else {
+      this.navCtrl.pop();
+    }
+   
   }
-  /*else {
-    this.navCtrl.pop();
-  }*/
 
+  }
 
+  getNotifications() {
+    this.notifications$ = this.eventService.getNotifications().snapshotChanges() //retorna los cambios en la DB (key and value)
+    .map(  
+      changes => {
+      return changes.map(c=> ({
+      key: c.payload.key, ...c.payload.val()
+      }));
+      }); ;
+      this.notifications$.forEach(value=>this.getNotificationsArray(value));
+  }
 
-  
+  getNotificationsArray (value: any) {
+    this.notificationArray = [];
+    for (let v of value) {
+      this.notificationArray.push(v);
+    }
+  }
 
+  deleteNotifications () {
+    for (let v of this.notificationArray) {
+      if (this.event.key == v.eventKey) this.eventService.deleteNotification(v);
+    }
   }
 
   confirmDelete(): Promise<Boolean> {

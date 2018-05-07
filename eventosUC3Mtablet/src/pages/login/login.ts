@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Nav, Events } from 'ionic-angular';
-import {User} from '../../models/user.model';
+import { IonicPage, NavController, Nav, Events } from 'ionic-angular';
 import { AuthentificationService } from '../../services/authentification.service';
 import { HomePage } from '../home/home';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

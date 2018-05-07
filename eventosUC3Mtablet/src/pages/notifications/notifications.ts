@@ -41,8 +41,8 @@ export class NotificationsPage {
 
   ngOnInit() {
     this.getUser();
-    this.getNotifications();
     this.getEvents();
+    this.getNotifications();
   }
 
   getDate(value: string): Date {
@@ -66,8 +66,15 @@ export class NotificationsPage {
   getNotificationsArray (value: any) {
     this.notificationArray = [];
     for (let v of value) {
-     // if (v.publicado_por!=this.user.email) {
+      if (v.type=='modificado'&&this.user.ntf_evMod==true&&this.getEvent(v.eventKey)){
         this.notificationArray.push(v);
+      }
+
+      else if (v.type=='cancelado'&&this.user.ntf_evCanc==true&&this.getEvent(v.eventKey)){
+        this.notificationArray.push(v);
+      }
+     // if (v.publicado_por!=this.user.email) {
+        
      // }
     }
   }
@@ -88,9 +95,6 @@ export class NotificationsPage {
   getEvents(): void {
     this.events$ = this.eventService.getEvents().snapshotChanges() //retorna los cambios en la DB (key and value)
     .map(
-      
-
-    
       changes => {
       return changes.map(c=> ({
       key: c.payload.key, ...c.payload.val()
@@ -102,6 +106,7 @@ export class NotificationsPage {
   getEventsArray(value: any) {
     this.eventArray = [];
     for (let v of value) {
+      
       this.eventArray.push(v);
     }
     
@@ -148,6 +153,13 @@ export class NotificationsPage {
     });
     toast.present();
    
+  }
+
+  getEvent(value: string) {
+    for (let v of this.eventArray) {
+      if (v.key == value && (v.users_favorites.indexOf(this.user.email) || v.users_registered.indexOf(this.user.email))) return true;
+    }
+    return false;
   }
 
 }

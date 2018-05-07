@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Campus, Categories } from '../../globalTypes'
 import { EventService } from '../../services/event.service';
 import { Event } from '../../models/event.model';
 import { EventDetailPage } from '../event-detail/event-detail';
