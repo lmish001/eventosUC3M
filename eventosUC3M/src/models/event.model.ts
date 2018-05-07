@@ -1,5 +1,4 @@
 import {Categories, Campus} from '../globalTypes'
-import { User } from './user.model';
 
 
 export interface Event {
@@ -18,4 +17,5 @@ export interface Event {
     webpage?: string;
     users_registered: string [];
     users_favorites: string [];
+    publicado_por: String;
 };

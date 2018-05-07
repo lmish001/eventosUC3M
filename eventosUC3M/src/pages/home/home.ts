@@ -164,5 +164,10 @@ export class HomePage {
     toast.present();
   }
 
+  myEvent (value: Event) {
+    if (value.publicado_por==this.user.email) return true;
+    return false;
+  }
+
 
 }

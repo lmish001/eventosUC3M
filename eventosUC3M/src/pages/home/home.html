@@ -23,12 +23,12 @@
                 <button ion-button clear color="none" icon-only (click)="shareEvent(event)">
                         <img class="icon" src="assets/imgs/share.png">
                     </button>
-                <div *ngIf="isInFavorites(event)==false">
+                <div *ngIf="isInFavorites(event)==false&&myEvent(event)==false">
                     <button ion-button clear color="none" icon-only (click)="addFavorites(event)">
                     <img class="icon" src="assets/imgs/fav_off.png">
                     </button>
                 </div>
-                <div *ngIf="isInFavorites(event)==true">
+                <div *ngIf="isInFavorites(event)==true&&myEvent(event)==false">
                     <button ion-button clear color="none" icon-only (click)="deleteFavorites(event)">
                     <img class="icon" src="assets/imgs/fav_on.png">
                     </button>

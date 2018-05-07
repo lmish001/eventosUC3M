@@ -43,26 +43,26 @@
     <div class="sep" *ngFor="let catg of event.categories"><h3 class="h3">{{catg}}</h3> &nbsp;</div>
 
     <div #map id="map"></div> 
-    <div *ngIf="isRegistered()==false">
+    <div *ngIf="isRegistered()==false&&myEvent(event)==false">
         <button ion-button block color="secondary" style="font-size:12px" (click)="register()">Inscribirse</button>
     </div>
-    <div *ngIf="isRegistered()==true">
+    <div *ngIf="isRegistered()==true&&myEvent(event)==false">
         <button ion-button block color="danger" style="font-size:12px" (click)="cancelRegistration()">Cancelar inscripción</button>
     </div>
     <div class="columna00">
-        <button ion-button small block color="secondary" style="font-size:12px">Exportar al Calendario</button>
+        <button ion-button small block color="primary" style="font-size:12px">Exportar al Calendario</button>
     </div>
     
     <div style="display:inline-block;width: 39%;">
         <button ion-button clear color="none" icon-only (click)="shareEvent(event)">
                 <img class="icon" src="assets/imgs/share.png">
             </button>
-        <div *ngIf="isFavorite()==false">
+        <div *ngIf="isFavorite()==false&&myEvent(event)==false">
             <button ion-button clear color="none" icon-only (click)="addFavorites(event)">
             <img class="icon" src="assets/imgs/fav_off.png">
             </button>
         </div>
-        <div *ngIf="isFavorite()==true">
+        <div *ngIf="isFavorite()==true&&myEvent(event)==false">
             <button ion-button clear color="none" icon-only (click)="deleteFavorites(event)">
             <img class="icon" src="assets/imgs/fav_on.png">
             </button>

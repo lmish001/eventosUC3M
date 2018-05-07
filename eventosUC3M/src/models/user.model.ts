@@ -1,5 +1,4 @@
 import {Categories, Campus} from '../globalTypes'
-import {Event} from '../models/event.model';
 
 export interface User {
     key?: string;
@@ -13,6 +12,4 @@ export interface User {
     ntf_evCanc: boolean;
     ntf_evMod: boolean;
     ntf_evNew: boolean;
-    //favorites: Event[];
-    //inscriptions: Event[];
 }

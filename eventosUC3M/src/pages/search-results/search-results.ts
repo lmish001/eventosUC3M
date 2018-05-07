@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { Campus, Categories } from '../../globalTypes';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { EventService } from '../../services/event.service';
 import { Event } from '../../models/event.model';
 import { EventDetailPage } from '../event-detail/event-detail';
@@ -36,7 +35,7 @@ export class SearchResultsPage {
   user: User;
   userArray: User[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,  private eventService: EventService, private auth: AuthentificationService, public toastCtrl: ToastController, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,  private eventService: EventService, private auth: AuthentificationService, public toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -208,6 +207,11 @@ export class SearchResultsPage {
 
   loadEventDetail(value: Event) {
     this.navCtrl.push(EventDetailPage, {param1: value, param2: this.user});
+  }
+
+  myEvent (value: Event) {
+    if (value.publicado_por==this.user.email) return true;
+    return false;
   }
 
 }

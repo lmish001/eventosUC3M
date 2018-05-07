@@ -1,7 +1,6 @@
 import {Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import {User} from '../../models/user.model';
-import {USER} from '../../mock-user';
 import { Observable } from 'rxjs/Observable';
 import { AuthentificationService } from '../../services/authentification.service';
 import { Categories } from '../../globalTypes';
