@@ -37,14 +37,15 @@
             <label for="file">File:</label>    
             <input type="file" (change)="previewFile($event)" accept=".png,.jpg," />    
         </section>          
-            <button  ion-button small style="float: left" color="danger" (click)="deleteUpload()" [disabled]="!(uploadURL | async)"> Delete </button>
-            <button  ion-button small style="float: left" color="primary" (click)="uploadFile()" [disabled]="!(previewURL | async)||(uploadURL | async)">Upload</button>   
+              
             <div *ngIf="uploadURL | async; let uploadSrc">    
                     {{setImage(uploadSrc)}}    
                     </div>
                     <div class="preview" *ngIf="previewURL | async; let previewSrc">   
                     <img [src]="previewSrc" />   
-                    </div>  
+                    </div>
+                    <button  ion-button small style="float: left;" color="danger" (click)="deleteUpload()" [disabled]="!(uploadURL | async)"> Delete </button>
+                    <button  ion-button small style="float: left" color="primary" (click)="uploadFile()" [disabled]="!(previewURL | async)||(uploadURL | async)">Upload</button>  
             <ion-item>
                 <ion-label>Fecha y hora del evento*</ion-label>
                 <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [min] = "minDate" hourValues="08,09,10,11,12,13,14,15,16,17,18,19,20,21 " minuteValues="00, 15, 30, 45" formControlName="fecha"></ion-datetime>
@@ -65,8 +66,6 @@
             </ion-item>
             <h2>Créditos*</h2> 
             <ion-list radio-group formControlName="creditos" style="width: 10%">
-
-                
                 <ion-item>
                     <ion-radio checked="true" value=0></ion-radio>
                     <ion-label>0</ion-label>
