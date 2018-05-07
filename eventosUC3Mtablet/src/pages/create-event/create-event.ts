@@ -68,6 +68,7 @@ export class CreateEventPage {
 
   formChanged() {
     if (this.eventForm.dirty || this.changedCat==true) return true;
+    return false;
   }
 
 
